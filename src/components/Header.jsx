@@ -23,8 +23,8 @@ export default function Header() {
       }`}
     >
       <div className="mx-auto flex w-[92%] max-w-6xl items-center justify-between py-3">
-        <a href="#inicio" aria-label="FurgoTrans inicio">
-          <Logo />
+        <a href="#inicio" aria-label="L&K Climate Systems, inicio">
+          <Logo scrolled={scrolled} />
         </a>
         <nav
           className="flex items-center gap-6 font-semibold"
