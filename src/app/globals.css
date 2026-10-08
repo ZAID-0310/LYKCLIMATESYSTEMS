@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy: #0b2f63;
+  --color-navy-dark: #08234b;
+  --color-brand: #f47b20;
+  --color-soft: #f1f3f6;
+}
+
+
+
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.fade-up {
+  animation: fade-up 0.7s ease-out both;
+  animation-delay: var(--delay, 0s);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-up { animation: none; }
+}
+
+html { scroll-behavior: smooth; }
