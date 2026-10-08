@@ -4,82 +4,80 @@ import TiltImage from "./TiltImage";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
-  Package,
-  Sofa,
-  Timer,
-  ArrowRight,
-  Boxes,
-  Store,
-  Globe,
-  Home,
-  Building2,
   Truck,
-  Zap,
-  Clock,
-  CalendarClock,
+  Wrench,
+  Thermometer,
+  Wind,
+  Snowflake,
+  ShieldCheck,
+  Layers,
+  Building2,
+  Cpu,
+  ArrowRight,
+  Gauge,
+  Hammer,
 } from "lucide-react";
 import { services } from "@/data/content";
 
-// Un ícono por servicio, en el mismo orden que tu content.js
+// Un ícono principal por servicio (1. Transporte Climatizado, 2. Fabricación y Chasis, 3. Climatización & Mantenimiento)
 // Imagen por servicio (null = usa el ícono). Mismo orden que content.js
 const serviceImages = ["/images/Fabricacióncamión.png", null, null];
-const icons = [Package, Sofa, Timer];
+const icons = [Truck, Layers, Wrench];
 
-// Tres tipos por servicio, en el mismo orden que tu content.js
-// (1. Transporte de Mercancías, 2. Mudanzas y Portes, 3. Entregas Express)
+// Subservicios detallados por categoría para L&K Climate Systems S.A.C.
 const typesByService = [
-  // 1. Transporte de Mercancías
+  // 1. Transporte Climatizado y Cadena de Frío
   [
     {
-      Icon: Boxes,
-      title: "Carga general",
-      text: "Traslado de mercadería en cajas, pallets o bultos entre almacenes, tiendas y clientes.",
+      Icon: Thermometer,
+      title: "Furgones para Pollitos Bebé",
+      text: "Diseñados para mantener temperatura constante y ventilación uniforme, reduciendo el estrés animal.",
     },
     {
-      Icon: Store,
-      title: "Distribución para negocios",
-      text: "Entregas programadas a tiendas, bodegas y puntos de venta, con rutas y horarios acordados.",
+      Icon: Snowflake,
+      title: "Cadena de Frío y Perecibles",
+      text: "Unidades térmicas de alto rendimiento para el transporte seguro de alimentos, lácteos y carga sensible.",
     },
     {
-      Icon: Globe,
-      title: "Transporte nacional",
-      text: "Envío de mercadería a otras ciudades del país en furgón, con entrega coordinada.",
+      Icon: Gauge,
+      title: "Tecnología Alemana y Control",
+      text: "Equipos térmicos con sensores de alta precisión para un monitoreo óptimo durante todo el trayecto.",
     },
   ],
-  // 2. Mudanzas y Portes
+  // 2. Fabricación & Carrocerías Especiales
   [
     {
-      Icon: Home,
-      title: "Mudanza de hogar",
-      text: "Traslado de muebles, electrodomésticos y cajas, con personal de apoyo para cargar y descargar.",
+      Icon: Layers,
+      title: "Furgones Climatizados a Medida",
+      text: "Diseño y fabricación personalizada de carrocerías según el tipo de carga y especificaciones del cliente.",
     },
+    {
+      Icon: Hammer,
+      title: "Modificación y Adaptación de Chasis",
+      text: "Refuerzo y adecuación estructural de chasis vehicular para garantizar el montaje perfecto de la unidad.",
+    },
+    {
+      Icon: ShieldCheck,
+      title: "Acabados Premium e Higiénicos",
+      text: "Materiales duraderos de fácil desinfección y máximo aislamiento térmico de bajo consumo energético.",
+    },
+  ],
+  // 3. Climatización Comercial & Servicio Técnico
+  [
     {
       Icon: Building2,
-      title: "Mudanza de oficina",
-      text: "Mudamos escritorios, equipos y archivos en horarios flexibles para que tu empresa no pare.",
+      title: "Instalación Comercial e Industrial",
+      text: "Montaje técnico profesional de sistemas de climatización para oficinas, comercios y locales industriales.",
     },
     {
-      Icon: Truck,
-      title: "Portes y fletes",
-      text: "Traslado de un mueble, un electrodoméstico o pocos bultos, sin pagar una mudanza completa.",
-    },
-  ],
-  // 3. Entregas Express
-  [
-    {
-      Icon: Zap,
-      title: "Express el mismo día",
-      text: "Recogemos y entregamos tu pedido en el día, con seguimiento durante el trayecto.",
+      Icon: Wrench,
+      title: "Mantenimiento Preventivo y Correctivo",
+      text: "Planes periódicos de limpieza, recarga de refrigerante y revisión técnica para evitar paradas operativas.",
     },
     {
-      Icon: Clock,
-      title: "Entrega urgente",
-      text: "Para envíos que no pueden esperar: salida inmediata y ruta directa al destino.",
-    },
-    {
-      Icon: CalendarClock,
-      title: "Entrega programada",
-      text: "Eliges el día y la franja horaria, y nosotros llegamos puntuales.",
+      Icon: Cpu,
+      title: "Diagnóstico y Reparación Especializada",
+      text: "Atención rápida para solucionar fallas en equipos de aire acondicionado y unidades de refrigeración.",
     },
   ],
 ];
@@ -102,7 +100,7 @@ export default function Services() {
     };
   }, [selected]);
 
-  // Si el servicio trae sus propios "types" en content.js, usa esos
+  // Si el servicio trae sus propios "types" en content.js, usa esos; si no, usa el array local
   const types = selected
     ? (selected.types ?? typesByService[selected.index] ?? [])
     : [];
@@ -113,16 +111,15 @@ export default function Services() {
         {/* Encabezado */}
         <div className="mx-auto mb-14 max-w-2xl text-center">
           <h2 className="text-2xl font-bold uppercase text-navy md:text-3xl">
-            Nuestros servicios
+            Nuestros Servicios
           </h2>
           <div className="mx-auto mt-3 h-1 w-14 rounded-full bg-brand" />
           <p className="mt-4 text-gray-600">
-            Soluciones de transporte para cada necesidad, con furgones propios y
-            conductores profesionales.
+            Ingeniería y soluciones de climatización vehicular, fabricación a medida y servicio técnico con tecnología alemana.
           </p>
         </div>
 
-        {/* Servicios */}
+        {/* Grilla de Servicios */}
         <div className="grid gap-12 md:grid-cols-3 md:gap-0 md:divide-x md:divide-gray-200">
           {services.map((s, i) => {
             const Icon = icons[i % icons.length];
@@ -160,7 +157,7 @@ export default function Services() {
         </div>
       </div>
 
-      {/* Modal */}
+      {/* Modal Interactivo */}
       <AnimatePresence>
         {selected && (
           <motion.div
@@ -202,7 +199,7 @@ export default function Services() {
               <p className="mt-2 text-sm text-gray-600">{selected.text}</p>
 
               <h4 className="mb-3 mt-6 text-sm font-bold text-navy">
-                Tipos de servicio
+                Especialidades e Inclusiones
               </h4>
               <ul className="space-y-3">
                 {types.map((t) => (
@@ -227,7 +224,7 @@ export default function Services() {
                 onTouchStart={() => {}}
                 className="group relative mt-6 flex w-full items-center justify-center overflow-hidden rounded-lg bg-brand px-6 py-3.5 text-center font-semibold text-white shadow-lg shadow-brand/20 transition-all duration-300 hover:shadow-brand/40 active:scale-95"
               >
-                <span className="relative z-10">¡Reserva tu furgón ahora!</span>
+                <span className="relative z-10">¡Cotiza tu proyecto a medida!</span>
                 <span className="absolute inset-0 origin-left scale-x-0 bg-navy transition-transform duration-300 ease-out group-hover:scale-x-100 group-active:scale-x-100" />
               </a>
             </motion.div>
