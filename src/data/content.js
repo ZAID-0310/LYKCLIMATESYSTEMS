@@ -6,7 +6,7 @@ export const nav = [
 ];
 
 export const services = [
-  { icon: "📦", title: "Transporte de Mercancías", text: "Traslados seguros de carga para particulares y empresas, con conductores profesionales." },
+  { icon: "📦", title: "Frabricación de Furgones", text: "Traslados seguros de carga para particulares y empresas, con conductores profesionales." },
   { icon: "🛋️", title: "Mudanzas y Portes", text: "Mudanzas de hogar y oficina con furgones amplios y personal de apoyo." },
   { icon: "⏱️", title: "Entregas Express", text: "Entregas urgentes el mismo día, con seguimiento y puntualidad garantizada." },
 ];

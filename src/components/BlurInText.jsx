@@ -2,16 +2,26 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 
+// 👉 Interruptor del efecto:
+//    true  = letras con desenfoque
+//    false = título normal, sin animación (efecto pausado)
+const EFFECT_ENABLED = false;
+
 // Anima letra por letra con desenfoque. Cada palabra va en un bloque
 // indivisible para que el salto de línea no la corte.
 export default function BlurInText({
   text = "",
   className = "",
   delayOffset = 0,
-  step = 0.04, // segundos entre letras
+  step = 0.015, // segundos entre letras
 }) {
   const reduce = useReducedMotion();
-  if (reduce) return <span className={className}>{text}</span>;
+
+  // Si el efecto está pausado o el usuario prefiere menos movimiento,
+  // se muestra el texto tal cual.
+  if (!EFFECT_ENABLED || reduce) {
+    return <span className={className}>{text}</span>;
+  }
 
   const words = text.split(" ");
   let charCount = 0;
@@ -28,7 +38,7 @@ export default function BlurInText({
                 key={ci}
                 initial={{ opacity: 0, filter: "blur(10px)" }}
                 animate={{ opacity: 1, filter: "blur(0px)" }}
-                transition={{ delay, duration: 0.8, ease: "easeOut" }}
+                transition={{ delay, duration: 0.45, ease: "easeOut" }}
                 className="inline-block"
               >
                 {char}

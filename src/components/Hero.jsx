@@ -4,17 +4,16 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import BlurInText from "./BlurInText";
 
-const STEP = 0.04;
+const STEP = 0.015;
 const count = (t) => t.replace(/ /g, "").length;
 
 const line1 = "Soluciones de transporte";
 const line2 = "rápidas y fiables con";
 const line3 = "furgones";
 
-const d1 = 0.2;
+const d1 = 0.1;
 const d2 = d1 + count(line1) * STEP;
 const d3 = d2 + count(line2) * STEP;
-const end = d3 + count(line3) * STEP; // cuando termina el título
 
 const ease = [0.22, 1, 0.36, 1];
 
@@ -63,9 +62,9 @@ export default function Hero() {
           </h1>
 
           <motion.p
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: end + 0.1, ease }}
+            transition={{ duration: 0.35, delay: 0.05, ease }}
             className="mt-4 text-gray-200"
           >
             Servicios de logística eficientes para particulares y empresas con
@@ -73,9 +72,9 @@ export default function Hero() {
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: end + 0.25, ease }}
+            transition={{ duration: 0.35, delay: 0.12, ease }}
             className="mt-6"
           >
             <a
@@ -93,7 +92,7 @@ export default function Hero() {
           <motion.small
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.7, delay: end + 0.4 }}
+            transition={{ duration: 0.35, delay: 0.2 }}
             className="block mt-3 text-sm text-gray-300"
           >
             Atención 24/7. Cobertura nacional.

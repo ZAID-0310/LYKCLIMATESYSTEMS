@@ -1,4 +1,5 @@
 "use client";
+import TiltImage from "./TiltImage";
 
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
@@ -20,6 +21,8 @@ import {
 import { services } from "@/data/content";
 
 // Un ícono por servicio, en el mismo orden que tu content.js
+// Imagen por servicio (null = usa el ícono). Mismo orden que content.js
+const serviceImages = ["/images/Fabricacióncamión.png", null, null];
 const icons = [Package, Sofa, Timer];
 
 // Tres tipos por servicio, en el mismo orden que tu content.js
@@ -125,8 +128,14 @@ export default function Services() {
             const Icon = icons[i % icons.length];
             return (
               <article key={s.title} className="group text-center md:px-10">
-                <div className="mx-auto mb-5 flex h-20 w-20 items-center justify-center rounded-full bg-navy/5 text-navy ring-1 ring-navy/10 transition-all duration-300 group-hover:-translate-y-1 group-hover:bg-navy group-hover:text-white group-hover:ring-brand">
-                  <Icon size={34} strokeWidth={1.6} />
+                <div className="mx-auto mb-3 flex h-28 items-center justify-center">
+                  {serviceImages[i] ? (
+                    <TiltImage src={serviceImages[i]} alt={s.title} />
+                  ) : (
+                    <div className="flex h-20 w-20 items-center justify-center rounded-full bg-navy/5 text-navy ring-1 ring-navy/10 transition-all duration-300 group-hover:-translate-y-1 group-hover:bg-navy group-hover:text-white group-hover:ring-brand">
+                      <Icon size={34} strokeWidth={1.6} />
+                    </div>
+                  )}
                 </div>
 
                 <h3 className="mb-2 text-lg font-bold text-navy">{s.title}</h3>
