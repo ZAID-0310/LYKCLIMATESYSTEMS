@@ -28,22 +28,32 @@ export const reasons = [
   {
     icon: "🇩🇪",
     title: "Tecnología Alemana",
-    text: "Equipos de alta precisión, calidad superior y máxima durabilidad en ruta.",
+    text: "Sistemas de refrigeración con estándares de alta precisión, máxima durabilidad en ruta y rendimiento garantizado.",
   },
   {
     icon: "🐥",
     title: "Especialización Avícola",
-    text: "Ventilación uniforme y ambiente térmico controlado que reduce el estrés animal.",
+    text: "Furgones con flujo de aire uniforme y control térmico estricto que aseguran la supervivencia y reducen el estrés animal.",
+  },
+  {
+    icon: "📐",
+    title: "Fabricación a Medida",
+    text: "Diseño e ingeniería adaptada al chasis de tu vehículo, optimizando el espacio según los requerimientos de tu carga.",
   },
   {
     icon: "⚡",
     title: "Eficiencia y Ahorro",
-    text: "Sistemas de bajo consumo energético que optimizan el rendimiento operativo.",
+    text: "Equipos térmicos de bajo consumo energético que reducen el impacto en el motor y minimizan costos operativos.",
   },
   {
-    icon: "📐",
-    title: "Diseño a Medida",
-    text: "Fabricación 100% personalizada según la marca de tu vehículo y tipo de carga.",
+    icon: "🛠️",
+    title: "Soporte Técnico y Garantía",
+    text: "Personal capacitado para instalación, mantenimiento preventivo y diagnóstico con respuesta rápida y repuestos.",
+  },
+  {
+    icon: "🇵🇪",
+    title: "Atención en todo el Perú",
+    text: "Cobertura nacional con soluciones profesionales de climatización para el sector agro, logístico e industrial.",
   },
 ];
 
