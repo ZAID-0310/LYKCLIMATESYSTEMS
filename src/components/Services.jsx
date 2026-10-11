@@ -34,7 +34,7 @@ const typesByService = [
   [
     {
       Icon: Thermometer,
-      img:  "/images/Furgonetapollitos.png",
+      img:  "/images/Camión_bebé_modal1.png",
       title: "Furgones para Pollitos Bebé",
       text: "Diseñados para mantener temperatura constante y ventilación uniforme, reduciendo el estrés animal.",
     },
