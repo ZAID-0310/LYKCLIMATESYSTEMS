@@ -37,8 +37,8 @@ export default function Hero() {
       </div>
 
       {/*contenido */}
-      <div className="relative z-10 order-1 mx-auto w-[92%] max-w-6xl md:order-none md:pl-8 lg:pl-1">
-        <div className="max-w-xl text-white">
+<div className="container relative z-10 order-1 mx-auto w-full px-4 md:order-none">        
+  <div className="max-w-xl text-white">
           <h1
             aria-label={`${line1} ${line2} ${line3}`}
             className="text-3xl md:text-5xl font-bold leading-tight"

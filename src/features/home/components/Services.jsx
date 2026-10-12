@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
@@ -34,19 +35,19 @@ const typesByService = [
   [
     {
       Icon: Thermometer,
-      img:  "/images/Furgonetapollitos.png",
+      img: "/images/Camión_bebé_modal1.png",
       title: "Furgones para Pollitos Bebé",
       text: "Diseñados para mantener temperatura constante y ventilación uniforme, reduciendo el estrés animal.",
     },
     {
       Icon: Snowflake,
-      img:  "/images/Furgonetapollitos.png",
+      img: "/images/Furgonetapollitos.png",
       title: "Cadena de Frío y Perecibles",
       text: "Unidades térmicas de alto rendimiento para el transporte seguro de alimentos, lácteos y carga sensible.",
     },
     {
       Icon: Gauge,
-      img:  "/images/Furgonetapollitos.png",
+      img: "/images/Furgonetapollitos.png",
       title: "Tecnología Alemana y Control",
       text: "Equipos térmicos con sensores de alta precisión para un monitoreo óptimo durante todo el trayecto.",
     },
@@ -55,19 +56,19 @@ const typesByService = [
   [
     {
       Icon: Layers,
-      img: null,
+      img: "/images/Furgonetapollitos.png",
       title: "Furgones Climatizados a Medida",
       text: "Diseño y fabricación personalizada de carrocerías según el tipo de carga y especificaciones del cliente.",
     },
     {
       Icon: Hammer,
-      img: null,
+      img: "/images/Furgonetapollitos.png",
       title: "Modificación y Adaptación de Chasis",
       text: "Refuerzo y adecuación estructural de chasis vehicular para garantizar el montaje perfecto de la unidad.",
     },
     {
       Icon: ShieldCheck,
-      img: null,
+      img: "/images/Furgonetapollitos.png",
       title: "Acabados Premium e Higiénicos",
       text: "Materiales duraderos de fácil desinfección y máximo aislamiento térmico de bajo consumo energético.",
     },
@@ -76,19 +77,19 @@ const typesByService = [
   [
     {
       Icon: Building2,
-      img: null,
+      img: "/images/Furgonetapollitos.png",
       title: "Instalación Comercial e Industrial",
       text: "Montaje técnico profesional de sistemas de climatización para oficinas, comercios y locales industriales.",
     },
     {
       Icon: Wrench,
-      img: null,
+      img: "/images/Furgonetapollitos.png",
       title: "Mantenimiento Preventivo y Correctivo",
       text: "Planes periódicos de limpieza, recarga de refrigerante y revisión técnica para evitar paradas operativas.",
     },
     {
       Icon: Cpu,
-      img: null,
+      img: "/images/Furgonetapollitos.png",
       title: "Diagnóstico y Reparación Especializada",
       text: "Atención rápida para solucionar fallas en equipos de aire acondicionado y unidades de refrigeración.",
     },
@@ -202,11 +203,18 @@ export default function Services() {
 
               {/* Encabezado del servicio */}
               <div className="flex items-center gap-3 px-6 pr-16 md:px-8">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-navy/5 text-navy">
-                  <selected.Icon size={24} strokeWidth={1.6} />
-                </div>
+                <Image
+                  src="/images/Logotipo1.png"
+                  alt="L&K Climate Systems S.A.C"
+                  width={120}
+                  height={80}
+                  className="h-14 w-auto shrink-0 object-contain"
+                />
                 <div>
-                  <h3 id="modal-title" className="text-xl font-bold text-navy md:text-2xl">
+                  <h3
+                    id="modal-title"
+                    className="text-xl font-bold text-navy md:text-2xl"
+                  >
                     {selected.title}
                   </h3>
                   <p className="text-xs font-medium uppercase tracking-wider text-brand">
@@ -228,7 +236,9 @@ export default function Services() {
                   onTouchStart={() => {}}
                   className="group relative flex w-full items-center justify-center overflow-hidden rounded-lg bg-brand px-6 py-3.5 text-center font-semibold text-white shadow-lg shadow-brand/20 transition-all duration-300 hover:shadow-brand/40 active:scale-95"
                 >
-                  <span className="relative z-10">¡Cotiza tu proyecto a medida!</span>
+                  <span className="relative z-10">
+                    ¡Cotiza tu proyecto a medida!
+                  </span>
                   <span className="absolute inset-0 origin-left scale-x-0 bg-navy transition-transform duration-300 ease-out group-hover:scale-x-100 group-active:scale-x-100" />
                 </a>
               </div>
