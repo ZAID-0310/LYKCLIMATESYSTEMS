@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import BlurInText from "./BlurInText";
+import useAppLoaded from "@/hooks/useAppLoaded";
 
 const STEP = 0.015;
 const count = (t) => t.replace(/ /g, "").length;
@@ -18,15 +19,16 @@ const d3 = d2 + count(line2) * STEP;
 const ease = [0.22, 1, 0.36, 1];
 
 export default function Hero() {
+  const loaded = useAppLoaded();
   return (
     <section
       id="inicio"
       className="relative flex min-h-svh w-full flex-col overflow-hidden bg-navy pt-24 md:flex-row md:items-center md:pt-16"
     >
       {/* 1. Imagen: debajo del texto en celular, a la derecha en PC */}
-      <div className="relative order-2 mt-6 min-h-[240px] w-full flex-1 md:absolute md:inset-y-0 md:right-0 md:order-none md:mt-0 md:min-h-0 md:w-3/4 md:flex-none">
+      <div className="reveal-zoom origin-center md:origin-right relative order-2 mt-6 min-h-[240px] w-full flex-1 md:absolute md:inset-y-0 md:right-0 md:order-none md:mt-0 md:min-h-0 md:w-3/4 md:flex-none">
         <Image
-          src="/images/hero-truck.png"
+          src="/images/img_camion_2.jpg"
           alt="Camión FurgoTrans"
           fill
           priority
@@ -35,7 +37,7 @@ export default function Hero() {
       </div>
 
       {/* 2. Contenido */}
-      <div className="container relative z-10 order-1 mx-auto w-full px-4 md:order-none">
+      <div className="relative z-10 order-1 mx-auto w-[92%] max-w-6xl md:order-none md:pl-8 lg:pl-1">
         <div className="max-w-xl text-white">
           <h1
             aria-label={`${line1} ${line2} ${line3}`}
@@ -63,7 +65,7 @@ export default function Hero() {
 
           <motion.p
             initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
+            animate={loaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
             transition={{ duration: 0.35, delay: 0.05, ease }}
             className="mt-4 text-gray-200"
           >
@@ -73,7 +75,7 @@ export default function Hero() {
 
           <motion.div
             initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
+            animate={loaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
             transition={{ duration: 0.35, delay: 0.12, ease }}
             className="mt-6"
           >
@@ -91,7 +93,7 @@ export default function Hero() {
 
           <motion.small
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            animate={loaded ? { opacity: 1 } : { opacity: 0 }}
             transition={{ duration: 0.35, delay: 0.2 }}
             className="block mt-3 text-sm text-gray-300"
           >

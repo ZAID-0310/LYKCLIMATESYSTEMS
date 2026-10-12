@@ -47,3 +47,15 @@ html { scroll-behavior: smooth; }
 @media (min-width: 768px) {
   #nosotros { scroll-margin-top: calc(var(--header-h) + var(--anchor-gap) - 5rem); } /* md:py-20 */
 }
+
+/* Zoom de entrada: la imagen empieza ampliada y se achica al terminar la pantalla de carga */
+.reveal-zoom {
+  transform: scale(1.18);
+  transition: transform 1.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+html.loaded .reveal-zoom {
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal-zoom { transform: none; transition: none; }
+}

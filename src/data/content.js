@@ -1,5 +1,5 @@
 export const nav = [
-  { label: "Inicio", href: "#inicio" },
+  { label: "Inicio", href: "/" },
   { label: "Servicios", href: "#servicios" },
   { label: "Furgones", href: "#flota" },
   { label: "Por qué elegirnos", href: "#nosotros" },

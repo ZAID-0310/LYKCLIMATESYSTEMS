@@ -3,7 +3,7 @@ import { useState } from "react";
 import Button from "@/components/ui/Button";
 
 // ✏️ Número de WhatsApp de la empresa (con código de país, sin + ni espacios)
-const WHATSAPP_NUMBER = "51900000000";
+const WHATSAPP_NUMBER = "51902589157";
 
 // ✏️ Opciones del selector "Tipo de servicio"
 const servicios = [
