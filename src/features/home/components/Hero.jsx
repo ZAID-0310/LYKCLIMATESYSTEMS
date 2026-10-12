@@ -25,7 +25,7 @@ export default function Hero() {
       id="inicio"
       className="relative flex min-h-svh w-full flex-col overflow-hidden bg-navy pt-24 md:flex-row md:items-center md:pt-16"
     >
-      {/* 1. Imagen: debajo del texto en celular, a la derecha en PC */}
+      {/* imagen debajo del texto en celular, a la derecha en PC */}
       <div className="reveal-zoom origin-center md:origin-right relative order-2 mt-6 min-h-[240px] w-full flex-1 md:absolute md:inset-y-0 md:right-0 md:order-none md:mt-0 md:min-h-0 md:w-3/4 md:flex-none">
         <Image
           src="/images/img_camion_2.jpg"
@@ -36,7 +36,7 @@ export default function Hero() {
         />
       </div>
 
-      {/* 2. Contenido */}
+      {/*contenido */}
       <div className="relative z-10 order-1 mx-auto w-[92%] max-w-6xl md:order-none md:pl-8 lg:pl-1">
         <div className="max-w-xl text-white">
           <h1
