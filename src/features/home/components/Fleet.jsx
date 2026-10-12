@@ -1,5 +1,5 @@
 import { fleet } from "@/data/content";
-import Button from "./Button";
+import Button from "@/components/ui/Button";
 
 export default function Fleet() {
   return (

@@ -25,3 +25,25 @@
 }
 
 html { scroll-behavior: smooth; }
+
+/* ---- Anclas medidas: dónde queda cada sección al hacer clic en un link ---- */
+:root {
+  --header-h: 3.75rem;   /* alto del navbar en celular */
+  --anchor-gap: 1.25rem; /* aire entre el navbar y el título */
+}
+
+@media (min-width: 768px) {
+  :root {
+    --header-h: 4rem;    /* alto del navbar en pantallas grandes */
+  }
+}
+
+/* margen = alto del navbar + aire - espacio interior de arriba de la sección */
+#servicios { scroll-margin-top: calc(var(--header-h) + var(--anchor-gap) - 5rem); } /* py-20 */
+#flota     { scroll-margin-top: calc(var(--header-h) + var(--anchor-gap) - 4rem); } /* py-16 */
+#contacto  { scroll-margin-top: calc(var(--header-h) + var(--anchor-gap) - 4rem); } /* py-16 */
+#nosotros  { scroll-margin-top: calc(var(--header-h) + var(--anchor-gap) - 4rem); } /* py-16 */
+
+@media (min-width: 768px) {
+  #nosotros { scroll-margin-top: calc(var(--header-h) + var(--anchor-gap) - 5rem); } /* md:py-20 */
+}

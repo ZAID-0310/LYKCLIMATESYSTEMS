@@ -16,7 +16,7 @@ export default function Footer() {
         </div>
       </div>
       <p className="py-6 text-center text-xs opacity-70">
-        © {new Date().getFullYear()} FurgoTrans. Todos los derechos reservados.
+        © {new Date().getFullYear()} L&K Climate Systems. Todos los derechos reservados.
       </p>
     </footer>
   );
