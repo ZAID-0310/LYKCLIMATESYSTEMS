@@ -16,8 +16,9 @@ const servicios = [
 ];
 
 // Estilo base de los campos (sin redondeo: cada campo pone el suyo)
+// text-base en celular evita que iPhone haga zoom al tocar el campo
 const field =
-  "w-full bg-white px-6 py-4 text-navy shadow-md outline-none transition placeholder:text-gray-500 focus:ring-4 focus:ring-brand/40";
+  "w-full bg-white px-5 py-3 text-base text-navy shadow-md outline-none transition placeholder:text-gray-500 focus:ring-4 focus:ring-brand/40 md:text-sm";
 
 export default function Contact() {
   const [waUrl, setWaUrl] = useState("");
@@ -52,15 +53,15 @@ export default function Contact() {
   return (
     <section id="contacto" className="bg-navy py-16">
       <div className="mx-auto w-[92%] max-w-6xl">
-        <h2 className="mb-10 text-center text-2xl font-bold uppercase text-white">
+        <h2 className="mb-8 text-center text-2xl font-bold uppercase text-white">
           Formulario de contacto
         </h2>
 
-        <div className="grid items-stretch gap-6 md:grid-cols-2">
+        <div className="grid items-stretch gap-5 md:grid-cols-2">
           {/* Tarjeta oscura redondeada */}
           <form
             onSubmit={onSubmit}
-            className="grid gap-4 rounded-3xl bg-navy-dark p-6 shadow-2xl ring-1 ring-white/10 md:p-8"
+            className="grid content-start gap-3 rounded-3xl bg-navy-dark p-5 shadow-2xl ring-1 ring-white/10 md:p-6"
           >
             <input
               name="nombre"
@@ -82,12 +83,12 @@ export default function Contact() {
             {/* ---- Teléfono con bandera (opcional: borra este bloque si no lo quieres) ---- */}
             <div className="flex gap-3">
               <span
-                className="flex h-[58px] w-[58px] shrink-0 items-center justify-center rounded-full bg-white shadow-md"
+                className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white shadow-md md:h-11 md:w-11"
                 title="Perú"
               >
                 <svg
                   viewBox="0 0 3 2"
-                  className="h-5 w-7 overflow-hidden rounded-sm"
+                  className="h-4 w-6 overflow-hidden rounded-sm"
                   aria-label="Bandera de Perú"
                 >
                   <rect width="3" height="2" fill="#D91023" />
@@ -125,7 +126,7 @@ export default function Contact() {
                 ))}
               </select>
               <ChevronDown
-                size={20}
+                size={18}
                 className="pointer-events-none absolute right-5 top-1/2 -translate-y-1/2 text-navy"
               />
             </div>
@@ -133,7 +134,7 @@ export default function Contact() {
             {/* Mensaje: esquinas redondeadas pero sin forma de píldora */}
             <textarea
               name="detalles"
-              rows={5}
+              rows={3}
               maxLength={600}
               placeholder="Mensaje"
               aria-label="Mensaje"
@@ -144,7 +145,7 @@ export default function Contact() {
             <button
               type="submit"
               onTouchStart={() => {}}
-              className="group relative mt-1 flex items-center justify-center overflow-hidden rounded-full bg-brand px-8 py-4 font-bold text-white shadow-lg shadow-brand/30 transition-all duration-300 hover:shadow-brand/50 active:scale-95 sm:w-fit"
+              className="group relative flex items-center justify-center overflow-hidden rounded-full bg-brand px-6 py-3 text-sm font-bold text-white shadow-lg shadow-brand/30 transition-all duration-300 hover:shadow-brand/50 active:scale-95 sm:w-fit"
             >
               <span className="relative z-10 transition-colors duration-300 group-hover:text-navy group-active:text-navy">
                 Solicitar presupuesto por WhatsApp
@@ -172,7 +173,7 @@ export default function Contact() {
           <iframe
             title="Mapa de cobertura"
             loading="lazy"
-            className="min-h-72 w-full rounded-3xl border-0 shadow-2xl md:h-full"
+            className="min-h-64 w-full rounded-3xl border-0 shadow-2xl md:h-full"
             src="https://www.openstreetmap.org/export/embed.html?bbox=-77.1%2C-12.2%2C-76.9%2C-12.0&layer=mapnik"
           />
         </div>

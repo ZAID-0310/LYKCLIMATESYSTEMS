@@ -39,13 +39,13 @@ html { scroll-behavior: smooth; }
 }
 
 /* margen = alto del navbar + aire - espacio interior de arriba de la sección */
-#servicios { scroll-margin-top: calc(var(--header-h) + var(--anchor-gap) - 5rem); } /* py-20 */
-#flota     { scroll-margin-top: calc(var(--header-h) + var(--anchor-gap) - 4rem); } /* py-16 */
-#contacto  { scroll-margin-top: calc(var(--header-h) + var(--anchor-gap) - 4rem); } /* py-16 */
-#nosotros  { scroll-margin-top: calc(var(--header-h) + var(--anchor-gap) - 4rem); } /* py-16 */
+#servicios { scroll-margin-top: calc(var(--header-h) + var(--anchor-gap) - 4rem); } /* py-20 */
+#flota     { scroll-margin-top: calc(var(--header-h) + var(--anchor-gap) - 3rem); } /* py-16 */
+#contacto  { scroll-margin-top: calc(var(--header-h) + var(--anchor-gap) - 3rem); } /* py-16 */
+#nosotros  { scroll-margin-top: calc(var(--header-h) + var(--anchor-gap) - 3rem); } /* py-16 */
 
 @media (min-width: 768px) {
-  #nosotros { scroll-margin-top: calc(var(--header-h) + var(--anchor-gap) - 5rem); } /* md:py-20 */
+  #nosotros { scroll-margin-top: calc(var(--header-h) + var(--anchor-gap) - 4rem); } /* md:py-20 */
 }
 
 /* Zoom de entrada: la imagen empieza ampliada y se achica al terminar la pantalla de carga */
