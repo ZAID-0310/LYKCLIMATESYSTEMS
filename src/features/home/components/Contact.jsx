@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import Button from "@/components/ui/Button";
+import { ChevronDown } from "lucide-react";
 
 // ✏️ Número de WhatsApp de la empresa (con código de país, sin + ni espacios)
 const WHATSAPP_NUMBER = "51902589157";
@@ -15,7 +15,9 @@ const servicios = [
   "Otro",
 ];
 
-const field = "w-full rounded-md bg-white p-3";
+// Estilo base de los campos (sin redondeo: cada campo pone el suyo)
+const field =
+  "w-full bg-white px-6 py-4 text-navy shadow-md outline-none transition placeholder:text-gray-500 focus:ring-4 focus:ring-brand/40";
 
 export default function Contact() {
   const [waUrl, setWaUrl] = useState("");
@@ -29,8 +31,16 @@ export default function Contact() {
       "",
       `*Nombre:* ${data.nombre.trim()}`,
       `*Email:* ${data.email.trim()}`,
-      `*Tipo de servicio:* ${data.tipo}`,
     ];
+
+    // Teléfono (solo si escribió algo además del +51)
+    const telefono = (data.telefono || "").trim();
+    if (telefono.replace(/\D/g, "").length > 2) {
+      lineas.push(`*Teléfono:* ${telefono}`);
+    }
+
+    lineas.push(`*Tipo de servicio:* ${data.tipo}`);
+
     const detalles = (data.detalles || "").trim();
     if (detalles) lineas.push(`*Detalles:* ${detalles}`);
 
@@ -42,19 +52,105 @@ export default function Contact() {
   return (
     <section id="contacto" className="bg-navy py-16">
       <div className="mx-auto w-[92%] max-w-6xl">
-        <h2 className="mb-10 text-center text-2xl font-bold uppercase text-white">Formulario de contacto</h2>
-        <div className="grid gap-6 md:grid-cols-2">
-          <form onSubmit={onSubmit} className="grid gap-3">
-            <input name="nombre" placeholder="Nombre" required aria-label="Nombre" className={field} />
-            <input name="email" type="email" placeholder="Email" required aria-label="Email" className={field} />
-            <select name="tipo" aria-label="Tipo de servicio" defaultValue="" required className={field}>
-              <option value="" disabled>Tipo de servicio</option>
-              {servicios.map((s) => (
-                <option key={s}>{s}</option>
-              ))}
-            </select>
-            <textarea name="detalles" rows={4} maxLength={600} placeholder="Detalles" aria-label="Detalles" className={field} />
-            <Button type="submit">Solicitar presupuesto por WhatsApp</Button>
+        <h2 className="mb-10 text-center text-2xl font-bold uppercase text-white">
+          Formulario de contacto
+        </h2>
+
+        <div className="grid items-stretch gap-6 md:grid-cols-2">
+          {/* Tarjeta oscura redondeada */}
+          <form
+            onSubmit={onSubmit}
+            className="grid gap-4 rounded-3xl bg-navy-dark p-6 shadow-2xl ring-1 ring-white/10 md:p-8"
+          >
+            <input
+              name="nombre"
+              placeholder="Nombre"
+              required
+              aria-label="Nombre"
+              className={`${field} rounded-full`}
+            />
+
+            <input
+              name="email"
+              type="email"
+              placeholder="Email"
+              required
+              aria-label="Email"
+              className={`${field} rounded-full`}
+            />
+
+            {/* ---- Teléfono con bandera (opcional: borra este bloque si no lo quieres) ---- */}
+            <div className="flex gap-3">
+              <span
+                className="flex h-[58px] w-[58px] shrink-0 items-center justify-center rounded-full bg-white shadow-md"
+                title="Perú"
+              >
+                <svg
+                  viewBox="0 0 3 2"
+                  className="h-5 w-7 overflow-hidden rounded-sm"
+                  aria-label="Bandera de Perú"
+                >
+                  <rect width="3" height="2" fill="#D91023" />
+                  <rect x="1" width="1" height="2" fill="#fff" />
+                </svg>
+              </span>
+              <input
+                name="telefono"
+                type="tel"
+                inputMode="tel"
+                defaultValue="+51 "
+                placeholder="+51 999 999 999"
+                aria-label="Teléfono"
+                className={`${field} rounded-full`}
+              />
+            </div>
+            {/* ---- Fin del bloque de teléfono ---- */}
+
+            {/* Selector con flecha propia */}
+            <div className="relative">
+              <select
+                name="tipo"
+                aria-label="Tipo de servicio"
+                defaultValue=""
+                required
+                className={`${field} cursor-pointer appearance-none rounded-full pr-12 invalid:text-gray-500`}
+              >
+                <option value="" disabled>
+                  Selecciona un servicio
+                </option>
+                {servicios.map((s) => (
+                  <option key={s} className="text-navy">
+                    {s}
+                  </option>
+                ))}
+              </select>
+              <ChevronDown
+                size={20}
+                className="pointer-events-none absolute right-5 top-1/2 -translate-y-1/2 text-navy"
+              />
+            </div>
+
+            {/* Mensaje: esquinas redondeadas pero sin forma de píldora */}
+            <textarea
+              name="detalles"
+              rows={5}
+              maxLength={600}
+              placeholder="Mensaje"
+              aria-label="Mensaje"
+              className={`${field} resize-none rounded-2xl`}
+            />
+
+            {/* Botón en píldora con el efecto de deslizamiento */}
+            <button
+              type="submit"
+              onTouchStart={() => {}}
+              className="group relative mt-1 flex items-center justify-center overflow-hidden rounded-full bg-brand px-8 py-4 font-bold text-white shadow-lg shadow-brand/30 transition-all duration-300 hover:shadow-brand/50 active:scale-95 sm:w-fit"
+            >
+              <span className="relative z-10 transition-colors duration-300 group-hover:text-navy group-active:text-navy">
+                Solicitar presupuesto por WhatsApp
+              </span>
+              <span className="absolute inset-0 origin-left scale-x-0 bg-white transition-transform duration-300 ease-out group-hover:scale-x-100 group-active:scale-x-100" />
+            </button>
 
             {waUrl && (
               <p role="status" className="text-sm text-white/80">
@@ -71,10 +167,12 @@ export default function Contact() {
               </p>
             )}
           </form>
+
+          {/* Mapa con las mismas esquinas redondeadas */}
           <iframe
             title="Mapa de cobertura"
             loading="lazy"
-            className="min-h-72 w-full rounded-lg border-0"
+            className="min-h-72 w-full rounded-3xl border-0 shadow-2xl md:h-full"
             src="https://www.openstreetmap.org/export/embed.html?bbox=-77.1%2C-12.2%2C-76.9%2C-12.0&layer=mapnik"
           />
         </div>
