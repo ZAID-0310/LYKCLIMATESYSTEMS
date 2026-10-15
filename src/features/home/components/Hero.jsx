@@ -80,12 +80,12 @@ export default function Hero() {
             className="mt-6"
           >
             <a
-              href="#contacto"
+              href="https://wa.me/51902589157?text=Hola,%20vengo%20de%20su%20p%C3%A1gina,%20quisiera%20informaci%C3%B3n"
               onTouchStart={() => {}}
               className="group relative inline-flex items-center overflow-hidden rounded-lg bg-brand px-6 py-3 font-semibold text-white shadow-lg shadow-brand/20 transition-all duration-300 hover:shadow-brand/40 active:scale-95"
             >
               <span className="relative z-10 transition-colors duration-300 group-hover:text-navy group-active:text-navy">
-                ¡Reserva tu furgón ahora!
+                ¡Contactanos ahora!
               </span>
               <span className="absolute inset-0 origin-left scale-x-0 bg-white transition-transform duration-300 ease-out group-hover:scale-x-100 group-active:scale-x-100" />
             </a>

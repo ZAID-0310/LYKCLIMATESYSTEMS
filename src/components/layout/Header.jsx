@@ -1,14 +1,17 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
 import Logo from "./Logo";
-import { nav } from "@/data/content";
+import { nav, navMas } from "@/data/content";
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false); // menú móvil
+  const [masMovil, setMasMovil] = useState(false); // submenú "Más" en móvil
+  const [masOpen, setMasOpen] = useState(false); // submenú "Más" en escritorio
+  const masRef = useRef(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -17,13 +20,28 @@ export default function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Cerrar el menú con la tecla Escape
+  // Cerrar menús con la tecla Escape
   useEffect(() => {
-    if (!open) return;
-    const onKey = (e) => e.key === "Escape" && setOpen(false);
+    if (!open && !masOpen) return;
+    const onKey = (e) => {
+      if (e.key === "Escape") {
+        setOpen(false);
+        setMasOpen(false);
+      }
+    };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [open]);
+  }, [open, masOpen]);
+
+  // Cerrar el submenú de escritorio al hacer clic fuera
+  useEffect(() => {
+    if (!masOpen) return;
+    const onClick = (e) => {
+      if (masRef.current && !masRef.current.contains(e.target)) setMasOpen(false);
+    };
+    document.addEventListener("mousedown", onClick);
+    return () => document.removeEventListener("mousedown", onClick);
+  }, [masOpen]);
 
   // Si la pantalla pasa a tamaño grande, cerrar el menú móvil
   useEffect(() => {
@@ -32,6 +50,11 @@ export default function Header() {
     mq.addEventListener("change", onChange);
     return () => mq.removeEventListener("change", onChange);
   }, []);
+
+  // Al cerrar el menú móvil, también se cierra su submenú
+  useEffect(() => {
+    if (!open) setMasMovil(false);
+  }, [open]);
 
   // Con el menú abierto el fondo siempre es blanco para que se lean los links
   const solid = scrolled || open;
@@ -46,7 +69,7 @@ export default function Header() {
     >
       <div className="mx-auto flex w-[92%] max-w-6xl items-center justify-between py-3">
         <a
-          href="#inicio"
+          href="/"
           aria-label="L&K Climate Systems, inicio"
           onClick={() => setOpen(false)}
         >
@@ -64,9 +87,58 @@ export default function Header() {
             </a>
           ))}
 
+          {/* Submenú "Más" (escritorio) */}
+          <div
+            ref={masRef}
+            className="relative hidden md:block"
+            onMouseEnter={() => setMasOpen(true)}
+            onMouseLeave={() => setMasOpen(false)}
+          >
+            <button
+              type="button"
+              onClick={() => setMasOpen(true)}
+              aria-expanded={masOpen}
+              aria-haspopup="menu"
+              className="inline-flex items-center gap-1 hover:text-brand focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
+            >
+              Más
+              <ChevronDown
+                size={16}
+                aria-hidden="true"
+                className={`transition-transform duration-200 ${masOpen ? "rotate-180" : ""}`}
+              />
+            </button>
+
+            <AnimatePresence>
+              {masOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: -6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -6 }}
+                  transition={{ duration: 0.15 }}
+                  className="absolute right-0 top-full pt-3"
+                >
+                  <ul className="min-w-52 overflow-hidden rounded-xl border border-navy/10 bg-white py-2 text-navy shadow-xl">
+                    {navMas.map((n) => (
+                      <li key={n.href}>
+                        <a
+                          href={n.href}
+                          onClick={() => setMasOpen(false)}
+                          className="block px-5 py-2.5 font-semibold transition-colors hover:bg-soft hover:text-brand"
+                        >
+                          {n.label}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
           {/* Botón de presupuesto: solo en pantallas grandes (en celular va dentro del menú) */}
           <a
-            href="#contacto"
+            href="/#contacto"
             className="group relative hidden items-center overflow-hidden rounded-lg bg-brand px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-brand/20 transition-all duration-300 hover:shadow-brand/40 active:scale-95 md:inline-flex"
           >
             <span className="relative z-10 whitespace-nowrap">Solicitar presupuesto</span>
@@ -111,9 +183,42 @@ export default function Header() {
                   </a>
                 </li>
               ))}
+
+              {/* Submenú "Más" (celular) */}
+              <li>
+                <button
+                  type="button"
+                  onClick={() => setMasMovil((o) => !o)}
+                  aria-expanded={masMovil}
+                  className="flex w-full items-center justify-between border-b border-navy/10 py-3 font-semibold transition-colors hover:text-brand"
+                >
+                  Más
+                  <ChevronDown
+                    size={18}
+                    aria-hidden="true"
+                    className={`transition-transform duration-200 ${masMovil ? "rotate-180" : ""}`}
+                  />
+                </button>
+                {masMovil && (
+                  <ul className="border-b border-navy/10 bg-soft/60 pl-4">
+                    {navMas.map((n) => (
+                      <li key={n.href}>
+                        <a
+                          href={n.href}
+                          onClick={() => setOpen(false)}
+                          className="block py-3 font-medium text-navy/80 transition-colors hover:text-brand"
+                        >
+                          {n.label}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+
               <li className="py-4">
                 <a
-                  href="#contacto"
+                  href="/#contacto"
                   onClick={() => setOpen(false)}
                   className="block rounded-lg bg-brand px-5 py-3 text-center font-semibold text-white shadow-lg shadow-brand/20 active:scale-95"
                 >
