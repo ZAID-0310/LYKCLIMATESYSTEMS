@@ -51,9 +51,9 @@ export default function Contact() {
   }
 
   return (
-    <section id="contacto" className="bg-navy py-16">
+    <section id="contacto" className="bg-white py-16">
       <div className="mx-auto w-[92%] max-w-6xl">
-        <h2 className="mb-8 text-center text-2xl font-bold uppercase text-white">
+        <h2 className="mb-8 text-center text-2xl font-bold uppercase text-navy">
           Formulario de contacto
         </h2>
 

@@ -55,7 +55,7 @@ export default function FaqPage() {
 
           <div className="mt-12 text-center">
             <p className="mb-4 font-semibold text-navy">¿No encontraste tu respuesta?</p>
-            <Button href="/#contacto">Escríbenos</Button>
+            <Button href="/contacto">Escríbenos</Button>
           </div>
         </div>
       </section>
