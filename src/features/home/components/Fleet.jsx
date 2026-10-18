@@ -22,8 +22,8 @@ const vehiculo = {
   ],
   // Imágenes del carrusel (deben estar en public/images/)
   imagenes: [
-    { src: "/images/Furgonetapollitos.png", alt: "Furgón avícola climatizado, vista exterior" },
-    { src: "/images/hero-truck.png", alt: "Furgón climatizado de L&K Climate Systems" },
+    { tipo: "video", src: "/images/WhatsApp_Video1.mp4", alt: "Recorrido del furgón climatizado" },
+    //{ src: "/images/hero-truck.png", alt: "Furgón climatizado de L&K Climate Systems" },
     // { src: "/images/furgon-3.png", alt: "Interior del furgón climatizado" },
   ],
 };
@@ -37,12 +37,13 @@ export default function Fleet() {
   const siguiente = () => setActual((i) => (i + 1) % imagenes.length);
   const anterior = () => setActual((i) => (i - 1 + imagenes.length) % imagenes.length);
 
-  // Cambia sola cada 4 segundos (se pausa con el mouse encima)
+  // Cambia sola cada 4 segundos (se pausa con el mouse encima, o si el slide actual es un video)
   useEffect(() => {
     if (reduceMotion || pausado || imagenes.length < 2) return;
+    if (imagenes[actual]?.tipo === "video") return;
     const t = setInterval(siguiente, 4000);
     return () => clearInterval(t);
-  }, [actual, pausado, reduceMotion, imagenes.length]);
+  }, [actual, pausado, reduceMotion, imagenes]);
 
   return (
     <section id="flota" className="py-16">
@@ -50,11 +51,11 @@ export default function Fleet() {
         <h2 className="mb-10 text-center text-2xl font-bold uppercase text-navy">Nuestra flota</h2>
 
         <div className="grid items-center gap-8 md:grid-cols-2 md:gap-12">
-          {/* ----- Carrusel de imágenes ----- */}
+          {/* ----- Carrusel de imágenes y video ----- */}
           <div
             onMouseEnter={() => setPausado(true)}
             onMouseLeave={() => setPausado(false)}
-            className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-soft shadow-lg"
+            className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-lg"
           >
             {imagenes.map((img, i) => (
               <div
@@ -64,13 +65,24 @@ export default function Fleet() {
                   i === actual ? "opacity-100" : "opacity-0"
                 }`}
               >
-                <Image
-                  src={img.src}
-                  alt={img.alt}
-                  fill
-                  sizes="(min-width: 768px) 45vw, 92vw"
-                  className="object-contain p-4"
-                />
+                {img.tipo === "video" ? (
+                  <video
+                    src={img.src}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    className="h-full w-full object-contain p-4"
+                  />
+                ) : (
+                  <Image
+                    src={img.src}
+                    alt={img.alt}
+                    fill
+                    sizes="(min-width: 768px) 45vw, 92vw"
+                    className="object-contain p-4"
+                  />
+                )}
               </div>
             ))}
 

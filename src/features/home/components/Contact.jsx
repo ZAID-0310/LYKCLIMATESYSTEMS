@@ -169,11 +169,14 @@ export default function Contact() {
           </form>
 
           {/* Mapa con las mismas esquinas redondeadas */}
-          <iframe
-            title="Mapa de cobertura"
-            loading="lazy"
-            className="min-h-72 w-full rounded-3xl border-0 shadow-2xl md:h-full"
-            src="https://www.openstreetmap.org/export/embed.html?bbox=-77.1%2C-12.2%2C-76.9%2C-12.0&layer=mapnik"
+          <video
+            src="/videos/tu-video.mp4"
+            controls
+            loop
+            muted
+            playsInline
+            poster="/images/video-poster.jpg"
+            className="min-h-72 w-full rounded-3xl border-0 shadow-2xl md:h-full object-cover"
           />
         </div>
       </div>
