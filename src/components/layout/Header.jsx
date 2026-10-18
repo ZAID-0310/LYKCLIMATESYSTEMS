@@ -56,6 +56,90 @@ export default function Header() {
     if (!open) setMasMovil(false);
   }, [open]);
 
+
+    // Scroll a las secciones de la página, midiendo de nuevo al terminar
+  useEffect(() => {
+    // Posición donde debe quedar la sección (respeta tu scroll-margin-top del CSS)
+    const posicion = (el) => {
+      const margen = parseFloat(getComputedStyle(el).scrollMarginTop) || 0;
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const y = el.getBoundingClientRect().top + window.scrollY - margen;
+      return Math.min(Math.max(0, y), max);
+    };
+
+    // Baja a la sección y, al terminar, vuelve a medir por si la página se movió
+        // Baja a la sección con una sola animación, midiendo el destino en cada cuadro
+    const irA = (el) => {
+      // Si el usuario prefiere menos movimiento, salta directo
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        window.scrollTo({ top: posicion(el), behavior: "instant" });
+        return;
+      }
+
+      const inicio = window.scrollY;
+      const t0 = performance.now();
+      const distancia = Math.abs(posicion(el) - inicio);
+      const duracion = Math.min(1000, Math.max(500, distancia * 0.5)); // milisegundos
+      const suavizado = (t) => 1 - Math.pow(1 - t, 3);
+
+      // Si el usuario toca o gira la rueda durante el recorrido, se detiene
+      let activo = true;
+      const parar = () => {
+        activo = false;
+      };
+      window.addEventListener("wheel", parar, { once: true, passive: true });
+      window.addEventListener("touchstart", parar, { once: true, passive: true });
+
+      const paso = (ahora) => {
+        if (!activo) return;
+        const t = Math.min(1, (ahora - t0) / duracion);
+        const destino = posicion(el); // se vuelve a medir en cada cuadro
+        window.scrollTo({
+          top: inicio + (destino - inicio) * suavizado(t),
+          behavior: "instant", // ignora el scroll-behavior: smooth del CSS
+        });
+        if (t < 1) {
+          requestAnimationFrame(paso);
+        } else {
+          window.removeEventListener("wheel", parar);
+          window.removeEventListener("touchstart", parar);
+        }
+      };
+      requestAnimationFrame(paso);
+    };
+
+    const onClick = (e) => {
+      const a = e.target.closest?.("a[href]");
+      if (!a || a.target === "_blank") return;
+
+      const url = new URL(a.href, window.location.href);
+      const mismaPagina =
+        url.origin === window.location.origin && url.pathname === window.location.pathname;
+      if (!mismaPagina || !url.hash) return;
+
+      const el = document.getElementById(decodeURIComponent(url.hash.slice(1)));
+      if (!el) return;
+
+      e.preventDefault();
+      history.pushState(null, "", url.hash);
+      setTimeout(() => irA(el), 50); // deja que se cierre el menú móvil
+    };
+
+    // Si entras desde otra página a /#servicios, ajusta cuando termina la pantalla de carga
+    const alTerminarCarga = () => {
+      if (!window.location.hash) return;
+      const el = document.getElementById(decodeURIComponent(window.location.hash.slice(1)));
+      if (el) setTimeout(() => irA(el), 100);
+    };
+
+    document.addEventListener("click", onClick);
+    window.addEventListener("app:loaded", alTerminarCarga, { once: true });
+    return () => {
+      document.removeEventListener("click", onClick);
+      window.removeEventListener("app:loaded", alTerminarCarga);
+    };
+  }, []);
+
   // Con el menú abierto el fondo siempre es blanco para que se lean los links
   const solid = scrolled || open;
 
@@ -138,7 +222,7 @@ export default function Header() {
 
           {/* Botón de presupuesto: solo en pantallas grandes (en celular va dentro del menú) */}
           <a
-            href="/#contacto"
+            href="/contacto"
             className="group relative hidden items-center overflow-hidden rounded-lg bg-brand px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-brand/20 transition-all duration-300 hover:shadow-brand/40 active:scale-95 md:inline-flex"
           >
             <span className="relative z-10 whitespace-nowrap">Solicitar presupuesto</span>
@@ -218,7 +302,7 @@ export default function Header() {
 
               <li className="py-4">
                 <a
-                  href="/#contacto"
+                  href="/contacto"
                   onClick={() => setOpen(false)}
                   className="block rounded-lg bg-brand px-5 py-3 text-center font-semibold text-white shadow-lg shadow-brand/20 active:scale-95"
                 >

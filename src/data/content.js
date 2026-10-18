@@ -3,12 +3,13 @@ export const nav = [
   { label: "Servicios", href: "/#servicios" },
   { label: "Furgones", href: "/#flota" },
   { label: "Por qué elegirnos", href: "/#nosotros" },
-  { label: "Contacto", href: "/#contacto" },
+ // { label: "Contacto", href: "/#contacto" },
 ];
 
 // Opciones que van dentro del submenú "Más"
 export const navMas = [
-  { label: "Galería", href: "/galeria" },
+  //{ label: "Galería", href: "/galeria" },
+  { label: "Contacto", href: "/contacto" },
   { label: "Preguntas frecuentes", href: "/preguntas-frecuentes" },
 ];
 
