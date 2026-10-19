@@ -1,161 +1,282 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import Image from "next/image";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useReducedMotion } from "framer-motion";
-import { Check, ChevronLeft, ChevronRight } from "lucide-react";
-import Button from "@/components/ui/Button";
+import {
+  ArrowRight,
+  ChevronLeft,
+  ChevronRight,
+  Pause,
+  Play,
+  Volume2,
+  VolumeX,
+} from "lucide-react";
 
-// ✏️ EDITA AQUÍ TU VEHÍCULO
-const vehiculo = {
-  nombre: "Furgón Avícola Climatizado",
-  descripcion:
-    "Furgones con flujo de aire uniforme y control térmico estricto que aseguran la supervivencia y reducen el estrés animal.",
-  especificaciones: [
-    { label: "Sistema", valor: "Ventilación y T° uniforme" },
-    { label: "Uso", valor: "Pollitos bebé y carga viva" },
-  ],
-  puntos: [
-    "Flujo de aire uniforme",
-    "Control térmico estricto",
-    "Reduce el estrés animal",
-  ],
-  // Imágenes del carrusel (deben estar en public/images/)
-  imagenes: [
-    { tipo: "video", src: "/images/WhatsApp_Video1.mp4", alt: "Recorrido del furgón climatizado" },
-    //{ src: "/images/hero-truck.png", alt: "Furgón climatizado de L&K Climate Systems" },
-    // { src: "/images/furgon-3.png", alt: "Interior del furgón climatizado" },
-  ],
-};
+// ✏️ EDITA AQUÍ TUS VIDEOS (deben estar en public/images/ o public/videos/)
+// Para agregar uno nuevo, copia un bloque { ... } y cambia los textos.
+const videos = [
+  {
+    src: "/images/WhatsApp_Video1.mp4",
+    titulo: "Interior del furgón climatizado",
+    descripcion:
+      "Distribución interna y equipos de climatización que mantienen una temperatura estable y ventilación uniforme durante todo el recorrido.",
+  },
+  {
+    src: "/images/camion.mp4",
+    titulo: "Unidad lista para ruta",
+    descripcion:
+      "Furgón con el equipo instalado y probado, listo para trasladar la carga con control de temperatura.",
+  },
+];
+
+const WHATSAPP =
+  "https://wa.me/51902589157?text=Hola,%20quisiera%20una%20cotizaci%C3%B3n";
+
+const pad = (n) => String(n).padStart(2, "0");
 
 export default function Fleet() {
   const reduceMotion = useReducedMotion();
-  const { nombre, descripcion, especificaciones, puntos, imagenes } = vehiculo;
+  const total = videos.length;
+
   const [actual, setActual] = useState(0);
-  const [pausado, setPausado] = useState(false);
+  const [autoplay, setAutoplay] = useState(true); // intención del usuario
+  const [playing, setPlaying] = useState(false);
+  const [muted, setMuted] = useState(true);
+  const [progress, setProgress] = useState(0); // 0 a 1
+  const [visible, setVisible] = useState(false);
 
-  const siguiente = () => setActual((i) => (i + 1) % imagenes.length);
-  const anterior = () => setActual((i) => (i - 1 + imagenes.length) % imagenes.length);
+  const videoRef = useRef(null);
+  const sectionRef = useRef(null);
 
-  // Cambia sola cada 4 segundos (se pausa con el mouse encima, o si el slide actual es un video)
+  const ir = useCallback(
+    (i) => {
+      setActual(((i % total) + total) % total);
+      setProgress(0);
+    },
+    [total]
+  );
+
+  // Respeta "reducir movimiento": no arranca solo
   useEffect(() => {
-    if (reduceMotion || pausado || imagenes.length < 2) return;
-    if (imagenes[actual]?.tipo === "video") return;
-    const t = setInterval(siguiente, 4000);
-    return () => clearInterval(t);
-  }, [actual, pausado, reduceMotion, imagenes]);
+    if (reduceMotion) setAutoplay(false);
+  }, [reduceMotion]);
+
+  // Solo reproduce cuando la sección está en pantalla (ahorra datos y batería)
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(([e]) => setVisible(e.isIntersecting), {
+      threshold: 0.35,
+    });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  // Reproduce / pausa según visibilidad e intención del usuario
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    if (visible && autoplay) v.play().catch(() => {});
+    else v.pause();
+  }, [actual, visible, autoplay]);
+
+  // Sincroniza el sonido
+  useEffect(() => {
+    if (videoRef.current) videoRef.current.muted = muted;
+  }, [muted, actual]);
+
+  const alternar = () => setAutoplay((a) => !a);
+
+  const onEnded = () => {
+    if (total > 1) ir(actual + 1);
+    else if (videoRef.current) {
+      videoRef.current.currentTime = 0;
+      videoRef.current.play().catch(() => {});
+    }
+  };
+
+  const onKeyDown = (e) => {
+    if (e.key === "ArrowRight") ir(actual + 1);
+    if (e.key === "ArrowLeft") ir(actual - 1);
+  };
+
+  const v = videos[actual];
 
   return (
-    <section id="flota" className="py-16">
+    <section id="flota" ref={sectionRef} className="py-16 md:py-24">
       <div className="mx-auto w-[92%] max-w-6xl">
-        <h2 className="mb-10 text-center text-2xl font-bold uppercase text-navy">Nuestra flota</h2>
+        {/* Encabezado */}
+        <div className="mb-10 grid gap-4 md:grid-cols-2 md:items-end md:gap-16">
+          <h2 className="text-3xl font-extrabold text-ink md:text-4xl">Nuestros trabajos</h2>
+          <p className="max-w-md text-gray-600 md:justify-self-end">
+            Así quedan los equipos instalados. Mira el interior y el resultado final de nuestros proyectos.
+          </p>
+        </div>
 
-        <div className="grid items-center gap-8 md:grid-cols-2 md:gap-12">
-          {/* ----- Carrusel de imágenes y video ----- */}
-          <div
-            onMouseEnter={() => setPausado(true)}
-            onMouseLeave={() => setPausado(false)}
-            className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-lg"
-          >
-            {imagenes.map((img, i) => (
-              <div
-                key={img.src}
-                aria-hidden={i !== actual}
-                className={`absolute inset-0 transition-opacity duration-700 ${
-                  i === actual ? "opacity-100" : "opacity-0"
-                }`}
-              >
-                {img.tipo === "video" ? (
-                  <video
-                    src={img.src}
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    className="h-full w-full object-contain p-4"
-                  />
-                ) : (
-                  <Image
-                    src={img.src}
-                    alt={img.alt}
-                    fill
-                    sizes="(min-width: 768px) 45vw, 92vw"
-                    className="object-contain p-4"
-                  />
-                )}
-              </div>
-            ))}
-
-            {imagenes.length > 1 && (
-              <>
-                <button
-                  type="button"
-                  onClick={anterior}
-                  aria-label="Imagen anterior"
-                  className="absolute left-3 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-navy shadow transition hover:bg-white"
-                >
-                  <ChevronLeft size={22} aria-hidden="true" />
-                </button>
-                <button
-                  type="button"
-                  onClick={siguiente}
-                  aria-label="Imagen siguiente"
-                  className="absolute right-3 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-navy shadow transition hover:bg-white"
-                >
-                  <ChevronRight size={22} aria-hidden="true" />
-                </button>
-
-                <div className="absolute inset-x-0 bottom-3 z-10 flex justify-center gap-2">
-                  {imagenes.map((img, i) => (
-                    <button
-                      key={img.src}
-                      type="button"
-                      onClick={() => setActual(i)}
-                      aria-label={`Ir a la imagen ${i + 1}`}
-                      aria-current={i === actual}
-                      className={`h-2.5 rounded-full transition-all ${
-                        i === actual ? "w-8 bg-brand" : "w-2.5 bg-navy/30 hover:bg-navy/60"
-                      }`}
-                    />
-                  ))}
-                </div>
-              </>
-            )}
-          </div>
-
-          {/* ----- Descripción ----- */}
+        <div
+          role="region"
+          aria-roledescription="carrusel"
+          aria-label="Videos de nuestros trabajos"
+          onKeyDown={onKeyDown}
+          className="grid gap-6 lg:grid-cols-[1fr_340px] lg:gap-8"
+        >
+          {/* ---------- Escenario principal ---------- */}
           <div>
-            <p className="text-sm font-bold uppercase tracking-widest text-brand">
-              Vehículo destacado
-            </p>
-            <h3 className="mt-2 text-2xl font-bold text-navy md:text-3xl">{nombre}</h3>
-            <div className="mt-3 h-1 w-14 rounded-full bg-brand" />
-            <p className="mt-4 text-gray-600">{descripcion}</p>
+            <div className="group relative aspect-video overflow-hidden rounded-md bg-ink">
+              <video
+                key={v.src}
+                ref={videoRef}
+                src={v.src}
+                muted
+                playsInline
+                preload="metadata"
+                onPlay={() => setPlaying(true)}
+                onPause={() => setPlaying(false)}
+                onTimeUpdate={(e) => {
+                  const d = e.currentTarget.duration;
+                  if (d) setProgress(e.currentTarget.currentTime / d);
+                }}
+                onEnded={onEnded}
+                className="h-full w-full object-contain"
+              />
 
-            <dl className="mt-6 grid gap-3 sm:grid-cols-2">
-              {especificaciones.map((e) => (
-                <div key={e.label} className="rounded-lg bg-soft p-4">
-                  <dt className="text-xs font-semibold uppercase tracking-wide text-gray-500">
-                    {e.label}
-                  </dt>
-                  <dd className="mt-1 font-semibold text-navy">{e.valor}</dd>
+              {/* Degradado inferior para que se lean los controles */}
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-ink/80 to-transparent"
+              />
+
+              {/* Botón central cuando está en pausa */}
+              {!playing && (
+                <button
+                  type="button"
+                  onClick={alternar}
+                  aria-label="Reproducir video"
+                  className="absolute left-1/2 top-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-brand text-white shadow-xl transition hover:scale-105 active:scale-95 md:h-20 md:w-20"
+                >
+                  <Play size={30} fill="currentColor" aria-hidden="true" className="ml-1" />
+                </button>
+              )}
+
+              {/* Flechas laterales */}
+              {total > 1 && (
+                <>
+                  <button
+                    type="button"
+                    onClick={() => ir(actual - 1)}
+                    aria-label="Video anterior"
+                    className="absolute left-3 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-ink shadow transition hover:bg-white md:opacity-0 md:group-hover:opacity-100 md:focus-visible:opacity-100"
+                  >
+                    <ChevronLeft size={22} aria-hidden="true" />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => ir(actual + 1)}
+                    aria-label="Video siguiente"
+                    className="absolute right-3 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-ink shadow transition hover:bg-white md:opacity-0 md:group-hover:opacity-100 md:focus-visible:opacity-100"
+                  >
+                    <ChevronRight size={22} aria-hidden="true" />
+                  </button>
+                </>
+              )}
+
+              {/* Barra de controles */}
+              <div className="absolute inset-x-0 bottom-0 flex items-center gap-3 px-4 pb-4 text-white">
+                <button
+                  type="button"
+                  onClick={alternar}
+                  aria-label={playing ? "Pausar video" : "Reproducir video"}
+                  className="flex h-9 w-9 items-center justify-center rounded-full bg-white/15 backdrop-blur transition hover:bg-white/30"
+                >
+                  {playing ? (
+                    <Pause size={18} fill="currentColor" aria-hidden="true" />
+                  ) : (
+                    <Play size={18} fill="currentColor" aria-hidden="true" className="ml-0.5" />
+                  )}
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setMuted((m) => !m)}
+                  aria-label={muted ? "Activar sonido" : "Silenciar"}
+                  aria-pressed={!muted}
+                  className="flex h-9 w-9 items-center justify-center rounded-full bg-white/15 backdrop-blur transition hover:bg-white/30"
+                >
+                  {muted ? <VolumeX size={18} aria-hidden="true" /> : <Volume2 size={18} aria-hidden="true" />}
+                </button>
+
+                <div className="h-1 flex-1 overflow-hidden rounded-full bg-white/25">
+                  <div
+                    className="h-full bg-brand"
+                    style={{ width: `${progress * 100}%` }}
+                  />
                 </div>
-              ))}
-            </dl>
 
-            <ul className="mt-6 space-y-2">
-              {puntos.map((p) => (
-                <li key={p} className="flex items-center gap-2 text-gray-700">
-                  <Check size={18} className="shrink-0 text-brand" aria-hidden="true" />
-                  {p}
-                </li>
-              ))}
-            </ul>
+                <span className="text-sm font-semibold tabular-nums">
+                  {pad(actual + 1)} / {pad(total)}
+                </span>
+              </div>
+            </div>
 
-            <div className="mt-8">
-              <Button href="#contacto">Solicitar cotización</Button>
+            {/* Descripción del video actual */}
+            <div className="mt-6 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+              <div aria-live="polite" className="max-w-xl">
+                <h3 className="text-2xl font-bold text-ink md:text-3xl">{v.titulo}</h3>
+                <p className="mt-2 text-gray-600">{v.descripcion}</p>
+              </div>
+
             </div>
           </div>
+
+          {/* ---------- Lista de videos ---------- */}
+          <ul className="-mx-[4%] flex snap-x gap-3 overflow-x-auto px-[4%] pb-2 lg:mx-0 lg:flex-col lg:overflow-visible lg:px-0 lg:pb-0">
+            {videos.map((item, i) => {
+              const activo = i === actual;
+              return (
+                <li key={item.src} className="min-w-[78%] snap-start sm:min-w-[46%] lg:min-w-0">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      ir(i);
+                      setAutoplay(true);
+                    }}
+                    aria-current={activo}
+                    aria-label={`Ver video ${i + 1}: ${item.titulo}`}
+                    className={`relative flex w-full items-center gap-4 overflow-hidden rounded-md border p-3 text-left transition-colors ${
+                      activo ? "border-navy bg-soft" : "border-steel bg-white hover:border-navy/50"
+                    }`}
+                  >
+                    <span className="relative aspect-video w-28 shrink-0 overflow-hidden rounded bg-ink">
+                      <video
+                        src={`${item.src}#t=0.5`}
+                        muted
+                        playsInline
+                        preload="metadata"
+                        tabIndex={-1}
+                        aria-hidden="true"
+                        className="h-full w-full object-cover"
+                      />
+                      <span className="absolute inset-0 flex items-center justify-center bg-ink/30">
+                        <Play size={18} fill="white" className="text-white" aria-hidden="true" />
+                      </span>
+                    </span>
+
+                    <span className="min-w-0">
+                      <span className="block text-sm font-semibold tabular-nums text-brand">{pad(i + 1)}</span>
+                      <span className="block font-bold leading-snug text-ink">{item.titulo}</span>
+                    </span>
+
+                    {/* Barra de progreso del video activo */}
+                    {activo && (
+                      <span className="absolute inset-x-0 bottom-0 h-0.5 bg-steel">
+                        <span className="block h-full bg-brand" style={{ width: `${progress * 100}%` }} />
+                      </span>
+                    )}
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
         </div>
       </div>
     </section>

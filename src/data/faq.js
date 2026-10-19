@@ -1,29 +1,34 @@
 // ✏️ Preguntas frecuentes: agrega, quita o edita
 export const preguntas = [
   {
-    pregunta: "¿Qué tipo de furgones fabrican?",
+    pregunta: "¿Qué servicios ofrecen?",
     respuesta:
-      "Fabricamos furgones climatizados a medida, diseñados según el tipo de carga y las necesidades de cada cliente, con acabados higiénicos.",
+      "Asesoría, instalación de equipos de climatización en furgones y vehículos de carga, y mantenimiento con servicio técnico especializado.",
   },
   {
     pregunta: "¿Sirven para transportar pollitos bebé?",
     respuesta:
-      "Sí. Contamos con furgones para pollitos bebé con flujo de aire uniforme y control térmico estricto, que ayudan a su supervivencia y reducen el estrés animal.",
+      "Sí. Tenemos experiencia en climatización para el traslado de pollitos bebé, con temperatura uniforme y ventilación eficiente que reducen el estrés de las aves durante el recorrido.",
   },
   {
-    pregunta: "¿También transportan carga en cadena de frío o perecible?",
+    pregunta: "¿Pueden instalar el equipo en mi vehículo?",
     respuesta:
-      "Sí, ofrecemos furgones para cadena de frío y productos perecibles, con control de temperatura.",
+      "Sí. Cuéntanos el modelo de tu vehículo y lo que necesitas, y te asesoramos sobre la mejor solución. Si hace falta, también adaptamos el chasis.",
   },
   {
-    pregunta: "¿Pueden adaptar el chasis de mi vehículo?",
+    pregunta: "¿Qué tecnología utilizan?",
     respuesta:
-      "Realizamos modificación y adaptación de chasis. Cuéntanos el modelo de tu vehículo y lo que necesitas, y te asesoramos.",
+      "Trabajamos con equipos de tecnología alemana, de alto rendimiento y eficiencia.",
   },
   {
-    pregunta: "¿Ofrecen mantenimiento y reparación?",
+    pregunta: "¿Ofrecen mantenimiento?",
     respuesta:
       "Sí: mantenimiento preventivo y correctivo, además de diagnóstico y reparación especializada de los equipos.",
+  },
+  {
+    pregunta: "¿Atienden en todo el Perú?",
+    respuesta:
+      "Sí, brindamos atención en todo el Perú.",
   },
   {
     pregunta: "¿Cómo solicito un presupuesto?",

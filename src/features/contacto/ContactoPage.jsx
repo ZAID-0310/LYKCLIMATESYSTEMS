@@ -3,7 +3,7 @@ import Button from "@/components/ui/Button";
 import Contact from "./components/Contact";
 
 // ✏️ Datos de contacto (el correo, la dirección y el horario son ficticios: cámbialos)
-const EMAIL = "contacto@lkclimatesystems.com";
+const EMAIL = "lykclimatesystemssac@gmail.com";
 const TELEFONO_VISIBLE = "+51 902 589 157";
 const TELEFONO_LINK = "+51902589157"; // sin espacios
 const DIRECCION = "Av. Industrial 123, Lima, Perú";

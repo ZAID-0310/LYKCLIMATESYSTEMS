@@ -51,7 +51,7 @@ const redes = [
 ];
 
 // ✏️ Datos de contacto (ficticios: cámbialos por los reales)
-const EMAIL = "contacto@lkclimatesystems.com";
+const EMAIL = "lykclimatesystemssac@gmail.com";
 const TELEFONO_VISIBLE = "+51 902 589 157";
 const TELEFONO_LINK = "+51902589157"; // sin espacios
 const DIRECCION = "Av. Industrial 123, Lima, Perú";
@@ -62,7 +62,7 @@ const MAPS_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURICom
 
   const col = "grid content-start gap-1";
   return (
-    <footer className="bg-navy-dark py-10 text-white">
+    <footer className="bg-ink pb-14 pt-16 text-white">
       <div className="mx-auto grid w-[92%] max-w-6xl gap-8 md:grid-cols-[2fr_1fr_1fr]">
         <div className="grid content-start gap-4">
         <Logo light />
@@ -85,8 +85,8 @@ const MAPS_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURICom
         </div>
       </div>
         <div className={col}>
-          <h4 className="font-bold">Inicio</h4>
-          <a href="#servicios">Servicios</a><a href="#flota">Flota</a><a href="#contacto">Contacto</a>
+          <h4 className="font-bold"><a href="#inicio">Inicio</a></h4>
+          <a href="#servicios">Servicios</a><a href="#flota">Nuestros Trabajos</a><a href="/contacto">Contacto</a>
         </div>
         <div className={col}>
         <h4 className="font-bold">Contáctanos</h4>

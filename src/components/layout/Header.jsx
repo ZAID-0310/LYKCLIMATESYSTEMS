@@ -151,7 +151,7 @@ export default function Header() {
           : "bg-gradient-to-b from-navy-dark/80 to-transparent text-white"
       }`}
     >
-      <div className="mx-auto flex w-[92%] max-w-6xl items-center justify-between py-3">
+      <div className="mx-auto flex w-[92%] max-w-7xl items-center justify-between py-3 md:py-4">
         <a
           href="/"
           aria-label="L&K Climate Systems, inicio"
@@ -160,7 +160,7 @@ export default function Header() {
           <Logo scrolled={solid} />
         </a>
 
-        <nav className="flex items-center gap-6 font-semibold" aria-label="Principal">
+        <nav className="flex items-center gap-5 font-semibold md:gap-8 md:text-lg" aria-label="Principal">
           {nav.map((n) => (
             <a
               key={n.href}
@@ -187,7 +187,7 @@ export default function Header() {
             >
               Más
               <ChevronDown
-                size={16}
+                size={20}
                 aria-hidden="true"
                 className={`transition-transform duration-200 ${masOpen ? "rotate-180" : ""}`}
               />
@@ -202,13 +202,13 @@ export default function Header() {
                   transition={{ duration: 0.15 }}
                   className="absolute right-0 top-full pt-3"
                 >
-                  <ul className="min-w-52 overflow-hidden rounded-xl border border-navy/10 bg-white py-2 text-navy shadow-xl">
+                  <ul className="min-w-60 overflow-hidden rounded-md border border-navy/10 bg-white py-2 text-navy shadow-xl">
                     {navMas.map((n) => (
                       <li key={n.href}>
                         <a
                           href={n.href}
                           onClick={() => setMasOpen(false)}
-                          className="block px-5 py-2.5 font-semibold transition-colors hover:bg-soft hover:text-brand"
+                          className="block px-6 py-3 text-base font-semibold transition-colors hover:bg-soft hover:text-brand"
                         >
                           {n.label}
                         </a>
@@ -223,7 +223,7 @@ export default function Header() {
           {/* Botón de presupuesto: solo en pantallas grandes (en celular va dentro del menú) */}
           <a
             href="/contacto"
-            className="group relative hidden items-center overflow-hidden rounded-lg bg-brand px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-brand/20 transition-all duration-300 hover:shadow-brand/40 active:scale-95 md:inline-flex"
+            className="group relative hidden items-center overflow-hidden rounded-md bg-brand px-7 py-3 text-base font-semibold text-white shadow-lg shadow-brand/20 transition-all duration-300 hover:shadow-brand/40 active:scale-95 md:inline-flex"
           >
             <span className="relative z-10 whitespace-nowrap">Solicitar presupuesto</span>
             <span className="absolute inset-0 origin-left scale-x-0 bg-navy-dark transition-transform duration-300 ease-out group-hover:scale-x-100 group-active:scale-x-100" />
@@ -236,9 +236,9 @@ export default function Header() {
             aria-label={open ? "Cerrar menú" : "Abrir menú"}
             aria-expanded={open}
             aria-controls="menu-movil"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand md:hidden"
+            className="inline-flex h-12 w-12 items-center justify-center rounded-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand md:hidden"
           >
-            {open ? <X size={26} aria-hidden="true" /> : <Menu size={26} aria-hidden="true" />}
+            {open ? <X size={30} aria-hidden="true" /> : <Menu size={30} aria-hidden="true" />}
           </button>
         </nav>
       </div>
@@ -253,7 +253,7 @@ export default function Header() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2 }}
-            className="max-h-[calc(100svh-4rem)] overflow-y-auto border-t border-navy/10 bg-white text-navy md:hidden"
+            className="max-h-[calc(100svh-4.5rem)] overflow-y-auto border-t border-navy/10 bg-white text-navy md:hidden"
           >
             <ul className="mx-auto w-[92%] max-w-6xl py-2">
               {nav.map((n) => (
@@ -261,7 +261,7 @@ export default function Header() {
                   <a
                     href={n.href}
                     onClick={() => setOpen(false)}
-                    className="block border-b border-navy/10 py-3 font-semibold transition-colors hover:text-brand"
+                    className="block border-b border-navy/10 py-4 text-lg font-semibold transition-colors hover:text-brand"
                   >
                     {n.label}
                   </a>
@@ -274,7 +274,7 @@ export default function Header() {
                   type="button"
                   onClick={() => setMasMovil((o) => !o)}
                   aria-expanded={masMovil}
-                  className="flex w-full items-center justify-between border-b border-navy/10 py-3 font-semibold transition-colors hover:text-brand"
+                  className="flex w-full items-center justify-between border-b border-navy/10 py-4 text-lg font-semibold transition-colors hover:text-brand"
                 >
                   Más
                   <ChevronDown
@@ -290,7 +290,7 @@ export default function Header() {
                         <a
                           href={n.href}
                           onClick={() => setOpen(false)}
-                          className="block py-3 font-medium text-navy/80 transition-colors hover:text-brand"
+                          className="block py-3.5 text-base font-medium text-navy/80 transition-colors hover:text-brand"
                         >
                           {n.label}
                         </a>
@@ -304,7 +304,7 @@ export default function Header() {
                 <a
                   href="/contacto"
                   onClick={() => setOpen(false)}
-                  className="block rounded-lg bg-brand px-5 py-3 text-center font-semibold text-white shadow-lg shadow-brand/20 active:scale-95"
+                  className="block rounded-md bg-brand px-5 py-4 text-center text-lg font-semibold text-white shadow-lg shadow-brand/20 active:scale-95"
                 >
                   Solicitar presupuesto
                 </a>

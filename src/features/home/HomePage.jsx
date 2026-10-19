@@ -2,7 +2,6 @@ import Hero from "./components/Hero";
 import Services from "./components/Services";
 import WhyUs from "./components/WhyUs";
 import Fleet from "./components/Fleet";
-import Testimonials from "./components/Testimonials";
 
 export default function HomePage() {
   return (
@@ -11,7 +10,6 @@ export default function HomePage() {
       <Services />
       <WhyUs />
       <Fleet />
-      <Testimonials />
     </main>
   );
 }

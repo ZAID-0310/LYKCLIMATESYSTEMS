@@ -1,7 +1,7 @@
 export const nav = [
   { label: "Inicio", href: "/" },
   { label: "Servicios", href: "/#servicios" },
-  { label: "Furgones", href: "/#flota" },
+  { label: "Nosotros", href: "" },
   { label: "Por qué elegirnos", href: "/#nosotros" },
  // { label: "Contacto", href: "/#contacto" },
 ];
@@ -15,52 +15,49 @@ export const navMas = [
 
 export const services = [
   {
-    icon: "🚛",
-    title: "Transporte Climatizado",
-    text: "Furgones con tecnología alemana para pollitos bebé, cadena de frío y carga perecible con temperatura controlada.",
+    title: "Instalación de Equipos Climatizados",
+    text: "Instalamos equipos de climatización con tecnología alemana en furgones y vehículos de carga, para mantener una temperatura estable durante todo el recorrido.",
   },
   {
-    icon: "⚙️",
-    title: "Fabricación y Chasis",
-    text: "Diseño y fabricación de furgones térmicos a medida, además de modificación y refuerzo de chasis vehicular.",
+    title: "Asesoría y Soluciones a Medida",
+    text: "Evaluamos tu vehículo y tus necesidades para recomendarte la solución adecuada y entregarte una propuesta personalizada.",
   },
   {
-    icon: "🛠️",
-    title: "Climatización Comercial",
-    text: "Instalación, mantenimiento preventivo/correctivo y diagnóstico especializado para equipos de aire acondicionado.",
+    title: "Mantenimiento y Servicio Técnico",
+    text: "Mantenimiento preventivo y correctivo, con diagnóstico y reparación especializada de tus equipos de climatización.",
   },
 ];
 
 export const reasons = [
   {
-    icon: "🇩🇪",
+    icon: "cpu",
     title: "Tecnología Alemana",
-    text: "Sistemas de refrigeración con estándares de alta precisión, máxima durabilidad en ruta y rendimiento garantizado.",
+    text: "Equipos de alto rendimiento y eficiencia, pensados para mantener una temperatura estable en todo el recorrido.",
   },
   {
-    icon: "🐥",
+    icon: "thermometer",
     title: "Especialización Avícola",
-    text: "Furgones con flujo de aire uniforme y control térmico estricto que aseguran la supervivencia y reducen el estrés animal.",
+    text: "Experiencia en climatización para el traslado de pollitos bebé: temperatura uniforme, ventilación eficiente y menos estrés para las aves.",
   },
   {
-    icon: "📐",
-    title: "Fabricación a Medida",
-    text: "Diseño e ingeniería adaptada al chasis de tu vehículo, optimizando el espacio según los requerimientos de tu carga.",
+    icon: "ruler",
+    title: "Soluciones Personalizadas",
+    text: "Cada proyecto se diseña de acuerdo con tu vehículo y tus necesidades.",
   },
   {
-    icon: "⚡",
-    title: "Eficiencia y Ahorro",
-    text: "Equipos térmicos de bajo consumo energético que reducen el impacto en el motor y minimizan costos operativos.",
+    icon: "zap",
+    title: "Equipos de Alto Rendimiento",
+    text: "Control de temperatura confiable y eficiente, para proteger tu carga de principio a fin.",
   },
   {
-    icon: "🛠️",
-    title: "Soporte Técnico y Garantía",
-    text: "Personal capacitado para instalación, mantenimiento preventivo y diagnóstico con respuesta rápida y repuestos.",
+    icon: "wrench",
+    title: "Instalación y Soporte Técnico",
+    text: "Instalación profesional y servicio técnico especializado a cargo de personal capacitado.",
   },
   {
-    icon: "🇵🇪",
+    icon: "map",
     title: "Atención en todo el Perú",
-    text: "Cobertura nacional con soluciones profesionales de climatización para el sector agro, logístico e industrial.",
+    text: "Llegamos a donde está tu proyecto, con soluciones de climatización para el sector agro, logístico e industrial.",
   },
 ];
 

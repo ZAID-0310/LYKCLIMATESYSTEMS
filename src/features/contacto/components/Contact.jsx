@@ -1,15 +1,17 @@
 "use client";
 import { useState } from "react";
+//import { ChevronDown } from "lucide-react";
+import Image from "next/image";
 import { ChevronDown } from "lucide-react";
 
-// ✏️ Número de WhatsApp de la empresa (con código de país, sin + ni espacios)
+//  Número de WhatsApp de la empresa (con código de país, sin + ni espacios)
 const WHATSAPP_NUMBER = "51902589157";
 
-// ✏️ Opciones del selector "Tipo de servicio"
+//  Opciones del selector "Tipo de servicio"
 const servicios = [
-  "Furgón para pollitos bebé",
-  "Cadena de frío y perecibles",
-  "Furgón climatizado a medida",
+  "Instalación de equipo climatizado",
+  "Climatización para pollitos bebé",
+  "Asesoría para mi vehículo",
   "Modificación y adaptación de chasis",
   "Mantenimiento y reparación",
   "Otro",
@@ -170,7 +172,7 @@ export default function Contact() {
           </form>
 
           {/* Mapa con las mismas esquinas redondeadas */}
-          <video
+          {/*<video
             src="/videos/tu-video.mp4"
             controls
             loop
@@ -178,7 +180,18 @@ export default function Contact() {
             playsInline
             poster="/images/video-poster.jpg"
             className="min-h-72 w-full rounded-3xl border-0 shadow-2xl md:h-full object-cover"
-          />
+          />*/}
+
+          {/* Imagen con las mismas esquinas redondeadas */}
+          <div className="relative min-h-72 w-full overflow-hidden rounded-3xl shadow-2xl md:min-h-0">
+            <Image
+              src="/images/camion-climatizado-2.png"
+              alt="Técnico instalando un equipo de climatización en un furgón"
+              fill
+              sizes="(min-width: 768px) 50vw, 92vw"
+              className="object-cover"
+            />
+          </div>
         </div>
       </div>
     </section>

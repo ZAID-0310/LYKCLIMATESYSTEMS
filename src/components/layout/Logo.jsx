@@ -9,15 +9,15 @@ export default function Logo({ scrolled = false }) {
         width={120}
         height={50}
         priority
-        className={`h-8 w-auto transition-all duration-300 md:h-10 ${
+        className={`h-10 w-auto transition-all duration-300 md:h-14 ${
           scrolled ? "" : "brightness-0 invert"
         }`}
       />
       <span className="flex flex-col leading-none">
-        <span className="text-base font-extrabold tracking-tight md:text-lg">
+        <span className="text-lg font-extrabold tracking-tight md:text-2xl">
           L&amp;K <span className="text-brand">Climate</span>
         </span>
-        <span className="mt-1 text-[10px] font-medium tracking-[0.25em] md:text-xs">
+        <span className="mt-1 text-[11px] font-medium tracking-[0.25em] md:text-sm">
           SYSTEMS S.A.C
         </span>
       </span>
