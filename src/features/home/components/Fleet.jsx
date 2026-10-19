@@ -22,10 +22,16 @@ const videos = [
       "Distribución interna y equipos de climatización que mantienen una temperatura estable y ventilación uniforme durante todo el recorrido.",
   },
   {
-    src: "/images/camion.mp4",
-    titulo: "Unidad lista para ruta",
+    src: "/images/video-pantalla.mp4",
+    titulo: "Unidad bien equipada",
     descripcion:
-      "Furgón con el equipo instalado y probado, listo para trasladar la carga con control de temperatura.",
+      "Furgon listo con su panel de control de temperatura para mejor control del sistema de climatisación",
+  },
+  {
+    src: "/images/video-caja-de energia.mp4",
+    titulo: "Caja de control de energia de emergencia",
+    descripcion:
+      "Viene instalado su panel de energia para tener mejor dominio de todo el sistema en caso de emergencia.",
   },
 ];
 
@@ -47,6 +53,7 @@ export default function Fleet() {
 
   const videoRef = useRef(null);
   const sectionRef = useRef(null);
+  const toqueRef = useRef(null);
 
   const ir = useCallback(
     (i) => {
@@ -100,6 +107,24 @@ export default function Fleet() {
     if (e.key === "ArrowLeft") ir(actual - 1);
   };
 
+    const onToqueInicio = (e) => {
+    const t = e.touches[0];
+    toqueRef.current = { x: t.clientX, y: t.clientY };
+  };
+
+  const onToqueFin = (e) => {
+    const ini = toqueRef.current;
+    toqueRef.current = null;
+    if (!ini || total < 2) return;
+    const t = e.changedTouches[0];
+    const dx = t.clientX - ini.x;
+    const dy = t.clientY - ini.y;
+    // Solo cuenta si el gesto es claramente horizontal
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) {
+      ir(actual + (dx < 0 ? 1 : -1));
+    }
+  };
+
   const v = videos[actual];
 
   return (
@@ -122,7 +147,11 @@ export default function Fleet() {
         >
           {/* ---------- Escenario principal ---------- */}
           <div>
-            <div className="group relative aspect-video overflow-hidden rounded-md bg-ink">
+            <div
+              onTouchStart={onToqueInicio}
+              onTouchEnd={onToqueFin}
+              className="group relative aspect-video touch-pan-y overflow-hidden rounded-md bg-ink"
+            >
               <video
                 key={v.src}
                 ref={videoRef}
@@ -218,6 +247,27 @@ export default function Fleet() {
               </div>
             </div>
 
+                        {/* Puntos del carrusel (solo celular) */}
+            {total > 1 && (
+              <div className="mt-4 flex justify-center gap-2 lg:hidden">
+                {videos.map((item, i) => (
+                  <button
+                    key={item.src}
+                    type="button"
+                    onClick={() => {
+                      ir(i);
+                      setAutoplay(true);
+                    }}
+                    aria-label={`Ir al video ${i + 1}`}
+                    aria-current={i === actual}
+                    className={`h-2.5 rounded-full transition-all ${
+                      i === actual ? "w-6 bg-brand" : "w-2.5 bg-steel"
+                    }`}
+                  />
+                ))}
+              </div>
+            )}
+
             {/* Descripción del video actual */}
             <div className="mt-6 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
               <div aria-live="polite" className="max-w-xl">
@@ -229,7 +279,7 @@ export default function Fleet() {
           </div>
 
           {/* ---------- Lista de videos ---------- */}
-          <ul className="-mx-[4%] flex snap-x gap-3 overflow-x-auto px-[4%] pb-2 lg:mx-0 lg:flex-col lg:overflow-visible lg:px-0 lg:pb-0">
+                    <ul className="hidden lg:flex lg:flex-col lg:gap-3">
             {videos.map((item, i) => {
               const activo = i === actual;
               return (

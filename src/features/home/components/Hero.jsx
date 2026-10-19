@@ -73,7 +73,7 @@ export default function Hero() {
             className="mt-6"
           >
             <a
-              href="#nosotros"
+              href="/nosotros"
               onTouchStart={() => {}}
               className="group relative inline-flex items-center overflow-hidden rounded-md bg-brand px-7 py-3.5 font-semibold text-white shadow-lg shadow-brand/20 transition-all duration-300 hover:shadow-brand/40 active:scale-95"
             >

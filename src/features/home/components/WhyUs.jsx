@@ -2,10 +2,28 @@
 
 import Image from "next/image";
 import { useRef, useState } from "react";
-import { ChevronLeft, ChevronRight, Cpu, Thermometer, Ruler, Zap, Wrench, MapPin } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Cpu,
+  Thermometer,
+  Ruler,
+  Zap,
+  Wrench,
+  MapPin,
+  Settings,
+} from "lucide-react";
 import { reasons } from "@/data/content";
 
-const iconMap = { cpu: Cpu, thermometer: Thermometer, ruler: Ruler, zap: Zap, wrench: Wrench, map: MapPin };
+const iconMap = {
+  cpu: Cpu,
+  thermometer: Thermometer,
+  ruler: Ruler,
+  zap: Zap,
+  wrench: Wrench,
+  map: MapPin,
+  settings: Settings,
+};
 
 const MAX_VISIBILITY = 2; // cuántas cards se ven a cada lado de la activa
 
