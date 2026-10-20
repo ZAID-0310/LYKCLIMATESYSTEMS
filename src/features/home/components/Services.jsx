@@ -23,7 +23,7 @@ import TypesCarousel from "./TypesCarousel";
 // Imagen de cada tarjeta principal (null = usa el ícono). Mismo orden que content.js
 const serviceImages = [
   "/images/Furgonetapollitos.png",
-  "/images/Fabricacióncamión.png",
+  "/images/Fabricacióncamión.webp",
   "/images/Técnicocamión.png",
 ];
 const icons = [Truck, Layers, Wrench];
@@ -31,67 +31,67 @@ const icons = [Truck, Layers, Wrench];
 // Especialidades de cada servicio. `img` es la foto de la card del carrusel
 // (null = se muestra el ícono grande hasta que tengas la foto).
 const typesByService = [
-  // 1. Transporte Climatizado
+  // 1. Instalación de Equipos Climatizados
   [
     {
       Icon: Thermometer,
       img: "/images/Camión_bebé_modal1.png",
       title: "Furgones para Pollitos Bebé",
-      text: "Diseñados para mantener temperatura constante y ventilación uniforme, reduciendo el estrés animal.",
+      text: "Temperatura constante y ventilación uniforme para un traslado seguro y con menos estrés para las aves.",
     },
     {
       Icon: Snowflake,
       img: "/images/Furgonetapollitos.png",
-      title: "Cadena de Frío y Perecibles",
-      text: "Unidades térmicas de alto rendimiento para el transporte seguro de alimentos, lácteos y carga sensible.",
+      title: "Control de Temperatura en Ruta",
+      text: "Climatización de furgones para mantener condiciones estables en diferentes situaciones de transporte.",
     },
     {
       Icon: Gauge,
       img: "/images/Furgonetapollitos.png",
-      title: "Tecnología Alemana y Control",
-      text: "Equipos térmicos con sensores de alta precisión para un monitoreo óptimo durante todo el trayecto.",
+      title: "Tecnología Alemana",
+      text: "Equipos de alto rendimiento y eficiencia, instalados por personal especializado.",
     },
   ],
-  // 2. Fabricación y Chasis
+  // 2. Asesoría y Soluciones a Medida
   [
     {
       Icon: Layers,
       img: "/images/Furgonetapollitos.png",
-      title: "Furgones Climatizados a Medida",
-      text: "Diseño y fabricación personalizada de carrocerías según el tipo de carga y especificaciones del cliente.",
+      title: "Evaluación de tu Vehículo",
+      text: "Revisamos tu vehículo y lo que necesitas transportar para definir la mejor solución de climatización.",
     },
     {
       Icon: Hammer,
       img: "/images/Furgonetapollitos.png",
       title: "Modificación y Adaptación de Chasis",
-      text: "Refuerzo y adecuación estructural de chasis vehicular para garantizar el montaje perfecto de la unidad.",
+      text: "Adecuamos el vehículo cuando es necesario para el montaje correcto del equipo.",
     },
     {
       Icon: ShieldCheck,
       img: "/images/Furgonetapollitos.png",
-      title: "Acabados Premium e Higiénicos",
-      text: "Materiales duraderos de fácil desinfección y máximo aislamiento térmico de bajo consumo energético.",
+      title: "Cotización Personalizada",
+      text: "Te entregamos una propuesta de acuerdo con tu vehículo y tus necesidades.",
     },
   ],
-  // 3. Climatización y Mantenimiento
+  // 3. Mantenimiento y Servicio Técnico
   [
-    {
-      Icon: Building2,
-      img: "/images/Furgonetapollitos.png",
-      title: "Instalación Comercial e Industrial",
-      text: "Montaje técnico profesional de sistemas de climatización para oficinas, comercios y locales industriales.",
-    },
     {
       Icon: Wrench,
       img: "/images/Furgonetapollitos.png",
-      title: "Mantenimiento Preventivo y Correctivo",
-      text: "Planes periódicos de limpieza, recarga de refrigerante y revisión técnica para evitar paradas operativas.",
+      title: "Mantenimiento Preventivo",
+      text: "Revisiones periódicas para que tu equipo funcione sin fallas durante el recorrido.",
     },
     {
       Icon: Cpu,
       img: "/images/Furgonetapollitos.png",
-      title: "Diagnóstico y Reparación Especializada",
-      text: "Atención rápida para solucionar fallas en equipos de aire acondicionado y unidades de refrigeración.",
+      title: "Diagnóstico y Reparación",
+      text: "Atención técnica para solucionar fallas en tus equipos de climatización.",
+    },
+    {
+      Icon: Building2,
+      img: "/images/Furgonetapollitos.png",
+      title: "Atención en todo el Perú",
+      text: "Servicio técnico especializado donde lo necesites.",
     },
   ],
 ];
@@ -119,52 +119,48 @@ export default function Services() {
     : [];
 
   return (
-    <section id="servicios" className="py-20">
+    <section id="servicios" className="py-20 md:py-24">
       <div className="mx-auto w-[92%] max-w-6xl">
         {/* Encabezado */}
-        <div className="mx-auto mb-14 max-w-2xl text-center">
-          <h2 className="text-2xl font-bold uppercase text-navy md:text-3xl">
-            Nuestros Servicios
+        <div className="mb-12 grid gap-4 md:grid-cols-2 md:items-end md:gap-16">
+          <h2 className="text-3xl font-extrabold text-ink md:text-4xl">
+            Ingeniería de climatización para vehículos
           </h2>
-          <div className="mx-auto mt-3 h-1 w-14 rounded-full bg-brand" />
-          <p className="mt-4 text-gray-600">
-            Ingeniería y soluciones de climatización vehicular, fabricación a
-            medida y servicio técnico con tecnología alemana.
+          <p className="max-w-md text-gray-600 md:justify-self-end">
+            Fabricamos furgones a medida, reforzamos chasis y damos servicio
+            técnico a equipos de aire acondicionado y refrigeración.
           </p>
         </div>
 
         {/* Grilla de servicios */}
-        <div className="grid gap-12 md:grid-cols-3 md:gap-0 md:divide-x md:divide-gray-200">
+        <div className="grid gap-6 md:grid-cols-3">
           {services.map((s, i) => {
             const Icon = icons[i % icons.length];
             return (
-              <article key={s.title} className="group text-center md:px-10">
-                <div className="mx-auto mb-3 flex h-28 items-center justify-center">
+              <article
+                key={s.title}
+                className="group flex flex-col overflow-hidden rounded-md border border-steel bg-white transition-colors duration-300 hover:border-navy"
+              >
+                <div className="flex h-44 items-center justify-center bg-soft">
                   {serviceImages[i] ? (
                     <TiltImage src={serviceImages[i]} alt={s.title} />
                   ) : (
-                    <div className="flex h-20 w-20 items-center justify-center rounded-full bg-navy/5 text-navy ring-1 ring-navy/10 transition-all duration-300 group-hover:-translate-y-1 group-hover:bg-navy group-hover:text-white group-hover:ring-brand">
-                      <Icon size={34} strokeWidth={1.6} />
-                    </div>
+                    <Icon size={44} strokeWidth={1.4} className="text-navy" aria-hidden="true" />
                   )}
                 </div>
 
-                <h3 className="mb-2 text-lg font-bold text-navy">{s.title}</h3>
-                <p className="mx-auto mb-5 max-w-xs text-sm leading-relaxed text-gray-600">
-                  {s.text}
-                </p>
-
-                <button
-                  type="button"
-                  onClick={() => setSelected({ ...s, Icon, index: i })}
-                  className="inline-flex items-center gap-1.5 border-b-2 border-brand pb-0.5 font-bold text-navy transition-colors hover:text-brand"
-                >
-                  Saber más
-                  <ArrowRight
-                    size={16}
-                    className="transition-transform duration-300 group-hover:translate-x-1"
-                  />
-                </button>
+                <div className="flex flex-1 flex-col p-6">
+                  <h3 className="text-lg font-bold text-ink">{s.title}</h3>
+                  <p className="mt-2 flex-1 text-sm leading-relaxed text-gray-600">{s.text}</p>
+                  <button
+                    type="button"
+                    onClick={() => setSelected({ ...s, Icon, index: i })}
+                    className="mt-6 inline-flex items-center gap-1.5 self-start font-bold text-navy transition-colors hover:text-brand"
+                  >
+                    Ver especialidades
+                    <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
+                  </button>
+                </div>
               </article>
             );
           })}
@@ -204,7 +200,7 @@ export default function Services() {
               {/* Encabezado del servicio */}
               <div className="flex items-center gap-3 px-6 pr-16 md:px-8">
                 <Image
-                  src="/images/Logotipo1.png"
+                  src="/images/Logotipo1.webp"
                   alt="L&K Climate Systems S.A.C"
                   width={120}
                   height={80}
@@ -234,7 +230,7 @@ export default function Services() {
                   href="#contacto"
                   onClick={() => setSelected(null)}
                   onTouchStart={() => {}}
-                  className="group relative flex w-full items-center justify-center overflow-hidden rounded-lg bg-brand px-6 py-3.5 text-center font-semibold text-white shadow-lg shadow-brand/20 transition-all duration-300 hover:shadow-brand/40 active:scale-95"
+                  className="group relative flex w-full items-center justify-center overflow-hidden rounded-md bg-brand px-6 py-3.5 text-center font-semibold text-white shadow-lg shadow-brand/20 transition-all duration-300 hover:shadow-brand/40 active:scale-95"
                 >
                   <span className="relative z-10">
                     ¡Cotiza tu proyecto a medida!

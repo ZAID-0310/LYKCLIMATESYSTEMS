@@ -2,8 +2,28 @@
 
 import Image from "next/image";
 import { useRef, useState } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Cpu,
+  Thermometer,
+  Ruler,
+  Zap,
+  Wrench,
+  MapPin,
+  Settings,
+} from "lucide-react";
 import { reasons } from "@/data/content";
+
+const iconMap = {
+  cpu: Cpu,
+  thermometer: Thermometer,
+  ruler: Ruler,
+  zap: Zap,
+  wrench: Wrench,
+  map: MapPin,
+  settings: Settings,
+};
 
 const MAX_VISIBILITY = 2; // cuántas cards se ven a cada lado de la activa
 
@@ -40,37 +60,31 @@ export default function WhyUs() {
   };
 
   return (
-    <section id="nosotros" className="overflow-hidden bg-soft py-16 md:py-20">
+    <section id="nosotros" className="overflow-hidden bg-ink py-16 text-white md:py-24">
       <div className="mx-auto w-[92%] max-w-6xl">
         {/* Encabezado */}
-        <div className="mx-auto mb-12 max-w-2xl text-center">
-          <h2 className="text-2xl font-bold uppercase text-navy md:text-3xl">
-            ¿Por qué elegir L&K Climate Systems?
+        <div className="mb-12 max-w-2xl">
+          <h2 className="text-3xl font-extrabold md:text-4xl">
+            Por qué elegir L&amp;K Climate Systems
           </h2>
-          <div className="mx-auto mt-3 h-1 w-14 rounded-full bg-brand" />
+          <p className="mt-4 text-white/70">
+            Especialistas en climatización de vehículos, con asesoría y
+            soporte técnico en todo el país.
+          </p>
         </div>
 
         {/* ============ PC: grilla original (desde 768 px) ============ */}
-        <div className="hidden gap-6 md:grid md:grid-cols-2 lg:grid-cols-3">
-          {reasons.map((r) => (
-            <div
-              key={r.title}
-              className="flex items-start gap-4 rounded-xl border border-gray-200/80 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-brand/40 hover:shadow-md"
-            >
-              <span
-                className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-navy/5 text-2xl ring-1 ring-navy/10"
-                aria-hidden="true"
-              >
-                {r.icon}
-              </span>
-              <div>
-                <h3 className="font-bold text-navy">{r.title}</h3>
-                <p className="mt-1 text-sm leading-relaxed text-gray-600">
-                  {r.text}
-                </p>
+        <div className="hidden border-l border-t border-white/15 md:grid md:grid-cols-2 lg:grid-cols-3">
+          {reasons.map((r) => {
+            const Icon = iconMap[r.icon];
+            return (
+              <div key={r.title} className="border-b border-r border-white/15 p-8">
+                <Icon size={30} strokeWidth={1.5} className="text-brand" aria-hidden="true" />
+                <h3 className="mt-5 text-lg font-bold">{r.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-white/70">{r.text}</p>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* ============ Celular: carrusel 3D (menos de 768 px) ============ */}
@@ -96,7 +110,7 @@ export default function WhyUs() {
                   key={r.title}
                   onClick={() => !isActive && go(i)}
                   aria-hidden={!isActive}
-                  className={`absolute inset-y-0 left-0 right-0 mx-auto w-[78%] rounded-2xl border bg-white p-6 transition-all duration-500 ease-out will-change-transform motion-reduce:transition-none ${
+                  className={`absolute inset-y-0 left-0 right-0 mx-auto w-[78%] rounded-md border bg-white p-6 text-ink transition-all duration-500 ease-out will-change-transform motion-reduce:transition-none ${
                     isActive
                       ? "border-brand/50 shadow-2xl"
                       : "cursor-pointer border-gray-200 shadow-md"
@@ -123,16 +137,14 @@ export default function WhyUs() {
                           />
                         </div>
                       ) : (
-                        <span
-                          className="flex h-14 w-14 items-center justify-center rounded-xl bg-navy/5 text-3xl ring-1 ring-navy/10"
-                          aria-hidden="true"
-                        >
-                          {r.icon}
-                        </span>
+(() => {
+                          const Icon = iconMap[r.icon];
+                          return <Icon size={40} strokeWidth={1.5} className="text-brand" aria-hidden="true" />;
+                        })()
                       )}
                     </div>
 
-                    <h3 className="text-xl font-bold text-navy">{r.title}</h3>
+                    <h3 className="text-xl font-bold text-ink">{r.title}</h3>
                     <p className="mt-2 text-sm leading-relaxed text-gray-600">
                       {r.text}
                     </p>

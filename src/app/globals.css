@@ -5,6 +5,8 @@
   --color-navy-dark: #08234b;
   --color-brand: #f47b20;
   --color-soft: #f1f3f6;
+  --color-ink: #06172e;
+  --color-steel: #d9e1ec;
 }
 
 
@@ -28,13 +30,13 @@ html { scroll-behavior: smooth; }
 
 /* ---- Anclas medidas: dónde queda cada sección al hacer clic en un link ---- */
 :root {
-  --header-h: 3.75rem;   /* alto del navbar en celular */
+  --header-h: 4.5rem;   /* alto del navbar en celular */
   --anchor-gap: 1.25rem; /* aire entre el navbar y el título */
 }
 
 @media (min-width: 768px) {
   :root {
-    --header-h: 4rem;    /* alto del navbar en pantallas grandes */
+    --header-h: 6rem;    /* alto del navbar en pantallas grandes */
   }
 }
 
@@ -59,3 +61,14 @@ html.loaded .reveal-zoom {
 @media (prefers-reduced-motion: reduce) {
   .reveal-zoom { transform: none; transition: none; }
 }
+
+/* Tipografía y detalles globales */
+body {
+  font-family: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  color: #1c2a3d;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3 { letter-spacing: -0.02em; text-wrap: balance; }
+:focus-visible { outline: 2px solid var(--color-brand); outline-offset: 3px; }
+
+html.sin-preloader .preloader { display: none !important; }

@@ -1,94 +1,82 @@
 export const nav = [
   { label: "Inicio", href: "/" },
+  { label: "Nosotros", href: "/nosotros" },
   { label: "Servicios", href: "/#servicios" },
-  { label: "Furgones", href: "/#flota" },
   { label: "Por qué elegirnos", href: "/#nosotros" },
- // { label: "Contacto", href: "/#contacto" },
 ];
 
 // Opciones que van dentro del submenú "Más"
 export const navMas = [
-  //{ label: "Galería", href: "/galeria" },
   { label: "Contacto", href: "/contacto" },
   { label: "Preguntas frecuentes", href: "/preguntas-frecuentes" },
 ];
 
 export const services = [
   {
-    icon: "🚛",
-    title: "Transporte Climatizado",
-    text: "Furgones con tecnología alemana para pollitos bebé, cadena de frío y carga perecible con temperatura controlada.",
+    title: "Venta e Instalación de Equipos de Climatización",
+    text: "Ofrecemos equipos de climatización para furgones, asesorando a nuestros clientes en la elección de la solución adecuada según las características de su vehículo y los requerimientos de transporte. También realizamos la instalación de los equipos.",
   },
   {
-    icon: "⚙️",
-    title: "Fabricación y Chasis",
-    text: "Diseño y fabricación de furgones térmicos a medida, además de modificación y refuerzo de chasis vehicular.",
+    title: "Mantenimiento Preventivo y Correctivo",
+    text: "Realizamos mantenimiento de equipos de climatización para contribuir a su correcto funcionamiento, prevenir fallas y detectar posibles problemas a tiempo.",
   },
   {
-    icon: "🛠️",
-    title: "Climatización Comercial",
-    text: "Instalación, mantenimiento preventivo/correctivo y diagnóstico especializado para equipos de aire acondicionado.",
+    title: "Diagnóstico y Reparación",
+    text: "Evaluamos el funcionamiento de los equipos, identificamos posibles fallas y ofrecemos soluciones técnicas según las necesidades de cada unidad.",
   },
 ];
 
 export const reasons = [
   {
-    icon: "🇩🇪",
+    icon: "cpu",
     title: "Tecnología Alemana",
-    text: "Sistemas de refrigeración con estándares de alta precisión, máxima durabilidad en ruta y rendimiento garantizado.",
+    text: "Trabajamos con tecnología alemana en soluciones de climatización, priorizando el rendimiento y la eficiencia de los equipos.",
   },
   {
-    icon: "🐥",
-    title: "Especialización Avícola",
-    text: "Furgones con flujo de aire uniforme y control térmico estricto que aseguran la supervivencia y reducen el estrés animal.",
+    icon: "thermometer",
+    title: "Control de Temperatura",
+    text: "Ofrecemos soluciones orientadas a mantener las condiciones de temperatura requeridas para el transporte de productos.",
   },
   {
-    icon: "📐",
-    title: "Fabricación a Medida",
-    text: "Diseño e ingeniería adaptada al chasis de tu vehículo, optimizando el espacio según los requerimientos de tu carga.",
+    icon: "ruler",
+    title: "Soluciones a Medida",
+    text: "Consideramos las características de cada furgón y las necesidades de cada operación para recomendar una solución adecuada.",
   },
   {
-    icon: "⚡",
-    title: "Eficiencia y Ahorro",
-    text: "Equipos térmicos de bajo consumo energético que reducen el impacto en el motor y minimizan costos operativos.",
+    icon: "wrench",
+    title: "Servicio Técnico Especializado",
+    text: "Brindamos instalación, mantenimiento, diagnóstico y reparación de equipos de climatización para furgones.",
   },
   {
-    icon: "🛠️",
-    title: "Soporte Técnico y Garantía",
-    text: "Personal capacitado para instalación, mantenimiento preventivo y diagnóstico con respuesta rápida y repuestos.",
+    icon: "settings",
+    title: "Atención Personalizada",
+    text: "Cada proyecto recibe orientación según los requerimientos del cliente y las características de su vehículo.",
   },
   {
-    icon: "🇵🇪",
-    title: "Atención en todo el Perú",
-    text: "Cobertura nacional con soluciones profesionales de climatización para el sector agro, logístico e industrial.",
+    icon: "map",
+    title: "Atención en el Perú",
+    text: "Atendemos proyectos de climatización para furgones en el Perú, según la disponibilidad y el alcance del servicio.",
   },
 ];
 
 export const fleet = [
   {
-    name: "Furgón Avícola Climatizado",
-    size: "Sistema: Ventilación y T° Uniforme",
-    load: "Uso: Pollitos Bebé y Carga Viva",
+    name: "Furgones para Transporte Climatizado",
+    size: "Soluciones: Equipos de climatización",
+    load: "Servicio: Venta, instalación y mantenimiento",
   },
   {
-    name: "Furgón Refrigerado Térmico",
-    size: "Sistema: Control de Cadena de Frío",
-    load: "Uso: Perecibles, Alimentos y Lácteos",
+    name: "Furgones para Transporte Avícola",
+    size: "Soluciones: Climatización y control de temperatura",
+    load: "Aplicación: Transporte avícola, según los requisitos del proyecto",
   },
   {
-    name: "Carrocería Especial a Medida",
-    size: "Sistema: Modificación y Refuerzo de Chasis",
-    load: "Uso: Flotas Logísticas e Industriales",
+    name: "Proyectos de Climatización a Medida",
+    size: "Soluciones: Asesoría y selección de equipos",
+    load: "Aplicación: Según las necesidades de cada vehículo",
   },
 ];
 
-export const testimonials = [
-  {
-    name: "Cliente del Sector Avícola",
-    text: "Los furgones climatizados para el traslado de pollitos bebé garantizan una tasa de supervivencia óptima gracias al flujo de aire uniforme.",
-  },
-  {
-    name: "Empresa de Logística y Transporte",
-    text: "Excelente servicio técnico y respuesta rápida en la fabricación y mantenimiento preventivo de nuestras unidades refrigeradas.",
-  },
-];
+// No publicar testimonios ficticios.
+// Agrega aquí opiniones reales con autorización de los clientes.
+export const testimonials = [];
