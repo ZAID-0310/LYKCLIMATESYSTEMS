@@ -4,7 +4,7 @@ export default function Logo({ scrolled = false }) {
   return (
     <span className="flex items-center gap-3">
       <Image
-        src="/images/Logotipo1.png"
+        src="/images/Logotipo1.webp"
         alt=""
         width={120}
         height={50}
