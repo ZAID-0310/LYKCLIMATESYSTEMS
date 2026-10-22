@@ -35,19 +35,19 @@ const typesByService = [
   [
     {
       Icon: Thermometer,
-      img: "/images/Camión_bebé_modal1.png",
+      img: "/images/image.png",
       title: "Furgones para Pollitos Bebé",
       text: "Temperatura constante y ventilación uniforme para un traslado seguro y con menos estrés para las aves.",
     },
     {
       Icon: Snowflake,
-      img: "/images/Furgonetapollitos.png",
+      img: "/images/Panel_temperatura.png",
       title: "Control de Temperatura en Ruta",
       text: "Climatización de furgones para mantener condiciones estables en diferentes situaciones de transporte.",
     },
     {
       Icon: Gauge,
-      img: "/images/Furgonetapollitos.png",
+      img: "/images/card3.png",
       title: "Tecnología Alemana",
       text: "Equipos de alto rendimiento y eficiencia, instalados por personal especializado.",
     },
@@ -56,19 +56,19 @@ const typesByService = [
   [
     {
       Icon: Layers,
-      img: "/images/Furgonetapollitos.png",
+      img: "/images/Evaluacióncamión.png",
       title: "Evaluación de tu Vehículo",
       text: "Revisamos tu vehículo y lo que necesitas transportar para definir la mejor solución de climatización.",
     },
     {
       Icon: Hammer,
-      img: "/images/Furgonetapollitos.png",
+      img: "/images/chasis_hammer.png",
       title: "Modificación y Adaptación de Chasis",
       text: "Adecuamos el vehículo cuando es necesario para el montaje correcto del equipo.",
     },
     {
       Icon: ShieldCheck,
-      img: "/images/Furgonetapollitos.png",
+      img: "/images/card2.png                             ",
       title: "Cotización Personalizada",
       text: "Te entregamos una propuesta de acuerdo con tu vehículo y tus necesidades.",
     },
@@ -83,7 +83,7 @@ const typesByService = [
     },
     {
       Icon: Cpu,
-      img: "/images/Furgonetapollitos.png",
+      img: "/images/Diagnóstico_cpu.png",
       title: "Diagnóstico y Reparación",
       text: "Atención técnica para solucionar fallas en tus equipos de climatización.",
     },
