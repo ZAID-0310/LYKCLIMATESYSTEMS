@@ -35,42 +35,42 @@ const typesByService = [
   [
     {
       Icon: Thermometer,
-      img: "/images/Camión_bebé_modal1.png",
+      img: "/images/image.png",
       title: "Furgones para Pollitos Bebé",
       text: "Diseñados para mantener temperatura constante y ventilación uniforme, reduciendo el estrés animal.",
     },
     {
       Icon: Snowflake,
-      img: "/images/Furgonetapollitos.png",
-      title: "Cadena de Frío y Perecibles",
-      text: "Unidades térmicas de alto rendimiento para el transporte seguro de alimentos, lácteos y carga sensible.",
+      img: "/images/Panel_temperatura.png",
+      title: "Control de Temperatura en Ruta",
+      text: "Climatización de furgones para mantener condiciones estables en diferentes situaciones de transporte.",
     },
     {
       Icon: Gauge,
-      img: "/images/Furgonetapollitos.png",
-      title: "Tecnología Alemana y Control",
-      text: "Equipos térmicos con sensores de alta precisión para un monitoreo óptimo durante todo el trayecto.",
+      img: "/images/card3.png",
+      title: "Tecnología Alemana",
+      text: "Equipos de alto rendimiento y eficiencia, instalados por personal especializado.",
     },
   ],
   // 2. Fabricación y Chasis
   [
     {
       Icon: Layers,
-      img: "/images/Furgonetapollitos.png",
-      title: "Furgones Climatizados a Medida",
-      text: "Diseño y fabricación personalizada de carrocerías según el tipo de carga y especificaciones del cliente.",
+      img: "/images/Evaluacióncamión.png",
+      title: "Evaluación de tu Vehículo",
+      text: "Revisamos tu vehículo y lo que necesitas transportar para definir la mejor solución de climatización.",
     },
     {
       Icon: Hammer,
-      img: "/images/Furgonetapollitos.png",
+      img: "/images/chasis_hammer.png",
       title: "Modificación y Adaptación de Chasis",
       text: "Refuerzo y adecuación estructural de chasis vehicular para garantizar el montaje perfecto de la unidad.",
     },
     {
       Icon: ShieldCheck,
-      img: "/images/Furgonetapollitos.png",
-      title: "Acabados Premium e Higiénicos",
-      text: "Materiales duraderos de fácil desinfección y máximo aislamiento térmico de bajo consumo energético.",
+      img: "/images/card2.png                             ",
+      title: "Cotización Personalizada",
+      text: "Te entregamos una propuesta de acuerdo con tu vehículo y tus necesidades.",
     },
   ],
   // 3. Climatización y Mantenimiento
@@ -89,9 +89,15 @@ const typesByService = [
     },
     {
       Icon: Cpu,
+      img: "/images/Diagnóstico_cpu.png",
+      title: "Diagnóstico y Reparación",
+      text: "Atención técnica para solucionar fallas en tus equipos de climatización.",
+    },
+    {
+      Icon: Building2,
       img: "/images/Furgonetapollitos.png",
-      title: "Diagnóstico y Reparación Especializada",
-      text: "Atención rápida para solucionar fallas en equipos de aire acondicionado y unidades de refrigeración.",
+      title: "Atención en todo el Perú",
+      text: "Servicio técnico especializado donde lo necesites.",
     },
   ],
 ];
