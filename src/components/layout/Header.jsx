@@ -45,7 +45,7 @@ export default function Header() {
 
   // Si la pantalla pasa a tamaño grande, cerrar el menú móvil
   useEffect(() => {
-    const mq = window.matchMedia("(min-width: 768px)");
+    const mq = window.matchMedia("(min-width: 1280px)");
     const onChange = (e) => e.matches && setOpen(false);
     mq.addEventListener("change", onChange);
     return () => mq.removeEventListener("change", onChange);
@@ -151,7 +151,9 @@ export default function Header() {
           : "bg-gradient-to-b from-navy-dark/80 to-transparent text-white"
       }`}
     >
-      <div className="mx-auto flex w-[92%] max-w-7xl items-center justify-between py-3 md:py-4">
+      
+<div className="mx-auto flex w-[92%] max-w-7xl items-center justify-between py-3 lg:py-4">
+
         <a
           href="/"
           aria-label="L&K Climate Systems, inicio"
@@ -160,12 +162,14 @@ export default function Header() {
           <Logo scrolled={solid} />
         </a>
 
-        <nav className="flex items-center gap-5 font-semibold md:gap-8 md:text-lg" aria-label="Principal">
+        
+<nav className="flex items-center gap-3 font-semibold xl:gap-6 xl:text-base 2xl:gap-8 2xl:text-lg" aria-label="Principal">
+
           {nav.map((n) => (
             <a
               key={n.href}
               href={n.href}
-              className="hidden hover:text-brand md:block"
+              className="hidden hover:text-brand xl:block"
             >
               {n.label}
             </a>
@@ -174,7 +178,7 @@ export default function Header() {
           {/* Submenú "Más" (escritorio) */}
           <div
             ref={masRef}
-            className="relative hidden md:block"
+            className="relative hidden xl:block"
             onMouseEnter={() => setMasOpen(true)}
             onMouseLeave={() => setMasOpen(false)}
           >
@@ -223,8 +227,7 @@ export default function Header() {
           {/* Botón de presupuesto: solo en pantallas grandes (en celular va dentro del menú) */}
           <a
             href="/contacto"
-            className="group relative hidden items-center overflow-hidden rounded-md bg-brand px-7 py-3 text-base font-semibold text-white shadow-lg shadow-brand/20 transition-all duration-300 hover:shadow-brand/40 active:scale-95 md:inline-flex"
-          >
+className="group relative hidden items-center overflow-hidden rounded-md bg-brand px-7 py-3 text-base font-semibold text-white shadow-lg shadow-brand/20 transition-all duration-300 hover:shadow-brand/40 active:scale-95 xl:inline-flex"          >
             <span className="relative z-10 whitespace-nowrap">Solicitar presupuesto</span>
             <span className="absolute inset-0 origin-left scale-x-0 bg-navy-dark transition-transform duration-300 ease-out group-hover:scale-x-100 group-active:scale-x-100" />
           </a>
@@ -236,7 +239,7 @@ export default function Header() {
             aria-label={open ? "Cerrar menú" : "Abrir menú"}
             aria-expanded={open}
             aria-controls="menu-movil"
-            className="inline-flex h-12 w-12 items-center justify-center rounded-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand md:hidden"
+            className="inline-flex h-12 w-12 items-center justify-center rounded-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand xl:hidden"
           >
             {open ? <X size={30} aria-hidden="true" /> : <Menu size={30} aria-hidden="true" />}
           </button>
@@ -253,7 +256,7 @@ export default function Header() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2 }}
-            className="max-h-[calc(100svh-4.5rem)] overflow-y-auto border-t border-navy/10 bg-white text-navy md:hidden"
+            className="max-h-[calc(100svh-4.5rem)] overflow-y-auto border-t border-navy/10 bg-white text-navy xl:hidden"
           >
             <ul className="mx-auto w-[92%] max-w-6xl py-2">
               {nav.map((n) => (

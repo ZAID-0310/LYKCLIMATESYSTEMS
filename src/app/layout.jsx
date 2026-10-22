@@ -6,6 +6,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import CtaBand from "@/components/layout/CtaBand";
 import Preloader from "@/components/layout/Preloader";
+import WhatsAppButton from "@/components/layout/WhatsappButton"
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -73,6 +74,7 @@ export default function RootLayout({ children }) {
         <Header />
         {children}
         <CtaBand />
+        <WhatsAppButton/>
         <Footer />
       </body>
     </html>

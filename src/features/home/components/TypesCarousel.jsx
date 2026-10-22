@@ -103,19 +103,25 @@ export default function TypesCarousel({ types }) {
       </div>
 
       {/* Puntos indicadores */}
-      <div className="mt-3 flex justify-center gap-2">
+      
+      {/* Puntos indicadores */}
+      <div className="mt-4 flex min-h-6 items-center justify-center gap-2">
         {types.map((t, i) => (
           <button
             key={t.title}
             type="button"
             onClick={() => goTo(i)}
             aria-label={`Ir a ${t.title}`}
-            className={`h-2.5 rounded-full transition-all duration-300 ${
-              active === i ? "w-8 bg-brand" : "w-2.5 bg-navy/20"
+            aria-current={active === i ? "true" : undefined}
+            className={`shrink-0 rounded-full transition-all duration-300 ${
+              active === i
+                ? "h-3 w-8 bg-orange-500"
+                : "h-3 w-3 bg-white hover:bg-brand/70"
             }`}
           />
         ))}
       </div>
+
     </div>
   );
 }

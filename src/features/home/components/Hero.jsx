@@ -28,7 +28,7 @@ export default function Hero() {
         className="relative flex min-h-svh w-full flex-col overflow-hidden bg-navy pt-24 md:flex-row md:items-center md:pt-24"
       >
         {/* imagen debajo del texto en celular, a la derecha en PC */}
-        <div className="reveal-zoom origin-center md:origin-right relative order-2 mt-6 min-h-[240px] w-full flex-1 md:absolute md:inset-y-0 md:right-0 md:order-none md:mt-0 md:min-h-0 md:w-3/4 md:flex-none">
+        <div className="reveal-zoom origin-center md:origin-right relative order-2 mt-6 min-h-[240px] w-full flex-1 md:absolute md:inset-y-0 md:right-0 md:order-none md:mt-0 md:min-h-0 md:w-[78%] md:flex-none">
           <Image
             src="/images/contact-image.webp"
             alt="Furgón climatizado de L&K Climate Systems"
@@ -39,11 +39,11 @@ export default function Hero() {
         </div>
 
         {/* contenido */}
-        <div className="container relative z-10 order-1 mx-auto w-full px-4 md:order-none">        
-          <div className="max-w-3xl text-white md:pl-8 lg:pl-12">
+        <div className="relative z-10 order-1 w-full px-5 sm:px-8 lg:px-[4.2vw] 2xl:px-24 md:order-none">
+          <div className="max-w-[680px] text-white lg:max-w-[760px] 2xl:max-w-[850px]">
             <h1
               aria-label={`${line1} ${line2}`}
-              className="text-4xl font-extrabold leading-[1.05] md:text-5xl"
+              className="text-4xl font-extrabold leading-[1.05] sm:text-5xl lg:text-[clamp(3rem,3.4vw,4.5rem)]"
             >
               <BlurInText
                 text={line1}
