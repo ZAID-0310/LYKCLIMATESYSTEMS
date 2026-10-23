@@ -26,13 +26,6 @@ const tarjetas = [
     href: `mailto:${EMAIL}`,
   },
   {
-    icono: MapPin,
-    titulo: "Dirección",
-    texto: DIRECCION,
-    href: MAPS_URL,
-    externo: true,
-  },
-  {
     icono: Clock,
     titulo: "Horario de atención",
     texto: HORARIO,
@@ -55,10 +48,10 @@ export default function ContactoPage() {
 
       {/* Datos de contacto */}
       <section className="py-12">
-        <div className="mx-auto grid w-[92%] max-w-6xl gap-5 sm:grid-cols-2 lg:grid-cols-4">
+                <div className="mx-auto flex w-[92%] max-w-6xl flex-wrap justify-center gap-5">
           {tarjetas.map(({ icono: Icono, titulo, texto, href, externo }) => {
             const clase =
-              "flex h-full flex-col items-center rounded-xl border border-navy/10 bg-white p-6 text-center shadow-sm";
+                            "flex w-full flex-col items-center rounded-xl border border-navy/10 bg-white p-6 text-center shadow-sm sm:w-[calc(50%-0.625rem)] lg:w-[calc(33.333%-0.834rem)]";
             const contenido = (
               <>
                 <span className="flex h-12 w-12 items-center justify-center rounded-full bg-brand/10 text-brand">

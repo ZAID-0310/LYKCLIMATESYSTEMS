@@ -23,7 +23,7 @@ import TypesCarousel from "./TypesCarousel";
 // Imagen de cada tarjeta principal (null = usa el ícono). Mismo orden que content.js
 const serviceImages = [
   "/images/Furgonetapollitos.png",
-  "/images/Fabricacióncamión.png",
+  "/images/Fabricacióncamión.webp",
   "/images/Técnicocamión.png",
 ];
 const icons = [Truck, Layers, Wrench];
@@ -200,7 +200,7 @@ export default function Services() {
               {/* Encabezado del servicio */}
               <div className="flex items-center gap-3 px-6 pr-16 md:px-8">
                 <Image
-                  src="/images/Logotipo1.png"
+                  src="/images/Logotipo1.webp"
                   alt="L&K Climate Systems S.A.C"
                   width={120}
                   height={80}

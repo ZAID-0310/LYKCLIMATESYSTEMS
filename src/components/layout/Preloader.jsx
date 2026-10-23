@@ -6,6 +6,7 @@ import Logo from "./Logo";
 
 const MIN_MS = 900;  // tiempo mínimo que se ve la pantalla blanca
 const MAX_MS = 3500; // tope: si la página tarda más, se quita igual
+const CLAVE = "preloader-visto";
 
 export default function Preloader() {
   const reduce = useReducedMotion();
@@ -13,6 +14,18 @@ export default function Preloader() {
 
   useEffect(() => {
     const root = document.documentElement;
+
+    // Si ya se mostró en esta sesión, no volver a mostrarlo
+    let yaVisto = false;
+    try {
+      yaVisto = sessionStorage.getItem(CLAVE) === "1";
+    } catch {}
+    if (yaVisto) {
+      root.classList.add("loaded");
+      setVisible(false);
+      return;
+    }
+
     const start = Date.now();
     let closed = false;
 
@@ -23,6 +36,9 @@ export default function Preloader() {
       closed = true;
       root.style.overflow = "";
       root.classList.add("loaded");
+      try {
+        sessionStorage.setItem(CLAVE, "1");
+      } catch {}
       window.dispatchEvent(new Event("app:loaded"));
       setVisible(false);
     };
