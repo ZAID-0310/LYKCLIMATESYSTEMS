@@ -24,7 +24,7 @@ import TypesCarousel from "./TypesCarousel";
 const serviceImages = [
   "/images/Furgonetapollitos.png",
   "/images/Fabricacióncamión.webp",
-  "/images/Técnicocamión.png",
+  "/images/Tecnicoreparando.jpg",
 ];
 const icons = [Truck, Layers, Wrench];
 

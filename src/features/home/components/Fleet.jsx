@@ -25,7 +25,7 @@ const videos = [
     src: "/images/video-pantalla.mp4",
     titulo: "Unidad bien equipada",
     descripcion:
-      "Furgon listo con su panel de control de temperatura para mejor control del sistema de climatisación",
+      "Furgon listo con su panel de control de temperatura para mejor control del sistema de climatización",
   },
   {
     src: "/images/video-caja-de energia.mp4",

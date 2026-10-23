@@ -10,7 +10,7 @@ export default function CtaBand() {
       <div className="relative mx-auto w-[92%] max-w-5xl overflow-hidden rounded-md">
         {/* Foto de fondo */}
         <Image
-          src="/images/Técnicoreparando.png"
+          src="/images/Tecnicoreparando.jpg"
           alt=""
           fill
           sizes="(min-width: 1152px) 1152px, 92vw"

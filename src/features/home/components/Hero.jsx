@@ -88,14 +88,7 @@ export default function Hero() {
               </Link>
             </motion.div>
 
-            <motion.small
-              initial={{ opacity: 0 }}
-              animate={loaded ? { opacity: 1 } : { opacity: 0 }}
-              transition={{ duration: 0.35, delay: 0.2 }}
-              className="block mt-3 text-sm text-gray-300"
-            >
-              Respondemos por WhatsApp. Cobertura en todo el Perú.
-            </motion.small>
+            
           </div>
         </div>
       </section>
