@@ -22,9 +22,9 @@ import TypesCarousel from "./TypesCarousel";
 
 // Imagen de cada tarjeta principal (null = usa el ícono). Mismo orden que content.js
 const serviceImages = [
-  "/images/Furgonetapollitos.png",
+  "/images/image.png",
   "/images/Fabricacióncamión.webp",
-  "/images/Tecnicoreparando.jpg",
+  "/images/Mecánico_diésel.png",
 ];
 const icons = [Truck, Layers, Wrench];
 
@@ -68,7 +68,7 @@ const typesByService = [
     },
     {
       Icon: ShieldCheck,
-      img: "/images/card2.png                             ",
+      img: "/images/Flota_formación.png",
       title: "Cotización Personalizada",
       text: "Te entregamos una propuesta de acuerdo con tu vehículo y tus necesidades.",
     },
@@ -77,19 +77,19 @@ const typesByService = [
   [
     {
       Icon: Wrench,
-      img: "/images/Furgonetapollitos.png",
+      img: "/images/Técnico_refrigeración.png",
       title: "Mantenimiento Preventivo",
       text: "Revisiones periódicas para que tu equipo funcione sin fallas durante el recorrido.",
     },
     {
       Icon: Cpu,
-      img: "/images/Diagnóstico_cpu.png",
+      img: "/images/Inspección_checklist.png",
       title: "Diagnóstico y Reparación",
       text: "Atención técnica para solucionar fallas en tus equipos de climatización.",
     },
     {
       Icon: Building2,
-      img: "/images/Furgonetapollitos.png",
+      img: "/images/Mapa.png",
       title: "Atención en todo el Perú",
       text: "Servicio técnico especializado donde lo necesites.",
     },
