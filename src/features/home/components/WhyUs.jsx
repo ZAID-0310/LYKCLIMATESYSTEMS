@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useRef, useState } from "react";
 import {
   ChevronLeft,
@@ -27,17 +26,6 @@ const iconMap = {
 
 const MAX_VISIBILITY = 2; // cuántas cards se ven a cada lado de la activa
 
-// Imagen de cada card del carrusel de celular, mismo orden que `reasons`.
-// null = muestra el ícono de siempre.
-const reasonImages = [
-  "/images/Camión_bebé_modal1.png", // 1
-  null, // 2
-  null, // 3
-  null, // 4
-  null, // 5
-  null, // 6
-];
-
 export default function WhyUs() {
   const [active, setActive] = useState(0);
   const touchX = useRef(null);
@@ -60,7 +48,10 @@ export default function WhyUs() {
   };
 
   return (
-    <section id="nosotros" className="overflow-hidden bg-ink py-16 text-white md:py-24">
+    <section
+      id="nosotros"
+      className="overflow-hidden bg-ink py-16 text-white md:py-24"
+    >
       <div className="mx-auto w-[92%] max-w-6xl">
         {/* Encabezado */}
         <div className="mb-12 max-w-2xl">
@@ -68,8 +59,8 @@ export default function WhyUs() {
             Por qué elegir L&amp;K Climate Systems
           </h2>
           <p className="mt-4 text-white/70">
-            Especialistas en climatización de vehículos, con asesoría y
-            soporte técnico en todo el país.
+            Especialistas en climatización de vehículos, con asesoría y soporte
+            técnico en todo el país.
           </p>
         </div>
 
@@ -78,10 +69,20 @@ export default function WhyUs() {
           {reasons.map((r) => {
             const Icon = iconMap[r.icon];
             return (
-              <div key={r.title} className="border-b border-r border-white/15 p-8">
-                <Icon size={30} strokeWidth={1.5} className="text-brand" aria-hidden="true" />
+              <div
+                key={r.title}
+                className="border-b border-r border-white/15 p-8"
+              >
+                <Icon
+                  size={30}
+                  strokeWidth={1.5}
+                  className="text-brand"
+                  aria-hidden="true"
+                />
                 <h3 className="mt-5 text-lg font-bold">{r.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-white/70">{r.text}</p>
+                <p className="mt-2 text-sm leading-relaxed text-white/70">
+                  {r.text}
+                </p>
               </div>
             );
           })}
@@ -104,6 +105,7 @@ export default function WhyUs() {
               const abs = Math.abs(offset);
               const visible = abs <= MAX_VISIBILITY;
               const isActive = offset === 0;
+              const Icon = iconMap[r.icon];
 
               return (
                 <div
@@ -124,24 +126,14 @@ export default function WhyUs() {
                   }}
                 >
                   <div className="flex h-full flex-col justify-center">
-                    {/* Imagen en lugar del ícono (o el ícono si no hay imagen) */}
+                    {/* Ícono */}
                     <div className="mb-4 flex justify-center">
-                      {reasonImages[i] ? (
-                        <div className="relative h-28 w-48">
-                          <Image
-                            src={reasonImages[i]}
-                            alt={r.title}
-                            fill
-                            sizes="192px"
-                            className="object-contain drop-shadow-lg"
-                          />
-                        </div>
-                      ) : (
-(() => {
-                          const Icon = iconMap[r.icon];
-                          return <Icon size={40} strokeWidth={1.5} className="text-brand" aria-hidden="true" />;
-                        })()
-                      )}
+                      <Icon
+                        size={40}
+                        strokeWidth={1.5}
+                        className="text-brand"
+                        aria-hidden="true"
+                      />
                     </div>
 
                     <h3 className="text-xl font-bold text-ink">{r.title}</h3>
