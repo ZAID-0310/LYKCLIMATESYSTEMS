@@ -68,7 +68,7 @@ const typesByService = [
     },
     {
       Icon: ShieldCheck,
-      img: "/images/Flota_formación.png",
+      img: "/images/Flota_formacion.png",
       title: "Cotización Personalizada",
       text: "Te entregamos una propuesta de acuerdo con tu vehículo y tus necesidades.",
     },
@@ -77,13 +77,13 @@ const typesByService = [
   [
     {
       Icon: Wrench,
-      img: "/images/Técnico_refrigeración.png",
+      img: "/images/Tecnico_refrigeracion.png",
       title: "Mantenimiento Preventivo",
       text: "Revisiones periódicas para que tu equipo funcione sin fallas durante el recorrido.",
     },
     {
       Icon: Cpu,
-      img: "/images/Inspección_checklist.png",
+      img: "/images/Inspeccion_checklist.png",
       title: "Diagnóstico y Reparación",
       text: "Atención técnica para solucionar fallas en tus equipos de climatización.",
     },
