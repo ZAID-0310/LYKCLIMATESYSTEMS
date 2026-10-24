@@ -127,8 +127,8 @@ export default function Services() {
             Ingeniería de climatización para vehículos
           </h2>
           <p className="max-w-md text-gray-600 md:justify-self-end">
-            Fabricamos furgones a medida, reforzamos chasis y damos servicio
-            técnico a equipos de aire acondicionado y refrigeración.
+            Instalamos equipos de climatización en furgones y brindamos
+            mantenimiento y reparación en todo el Perú.
           </p>
         </div>
 
