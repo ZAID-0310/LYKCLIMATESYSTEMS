@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown, Menu, X } from "lucide-react";
+import { FaFacebook, FaInstagram } from "react-icons/fa";
 import Logo from "./Logo";
 import { nav, navMas } from "@/data/content";
 
@@ -222,6 +223,33 @@ export default function Header() {
                 </motion.div>
               )}
             </AnimatePresence>
+          </div>
+
+          {/* Redes sociales */}
+          <div className="hidden items-center gap-3 xl:flex">
+            <a
+                            href="https://www.facebook.com/profile.php?id=61591485725790&locale=es_LA"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook de LYK Climate Systems"
+              className={`transition-colors duration-300 hover:text-blue-500 ${
+                solid ? "text-navy" : "text-white"
+              }`}
+            >
+              <FaFacebook size={22} />
+            </a>
+
+            <a
+              href="https://www.instagram.com/lykclimatesystemssac/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram de LYK Climate Systems"
+              className={`transition-colors duration-300 hover:text-pink-500 ${
+              solid ? "text-navy" : "text-white"
+            }`}
+            >
+              <FaInstagram size={22} />
+            </a>
           </div>
 
           {/* Botón de presupuesto: solo en pantallas grandes (en celular va dentro del menú) */}

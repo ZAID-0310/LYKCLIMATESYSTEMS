@@ -25,7 +25,7 @@ export default function Footer() {
 const redes = [
   {
     nombre: "WhatsApp",
-    url: "https://wa.me/519025891570",
+        url: "https://wa.me/51902589157?text=Hola,%20vengo%20de%20su%20p%C3%A1gina,%20quisiera%20una%20cotizaci%C3%B3n",
     icono: <MessageCircle size={18} aria-hidden="true" />,
   },
   {

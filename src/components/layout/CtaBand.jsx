@@ -32,6 +32,8 @@ export default function CtaBand() {
 
           <a
             href={WHATSAPP}
+            target="_blank"
+            rel="noopener noreferrer"
             className="group inline-flex shrink-0 items-center justify-center gap-3 self-start rounded-md bg-ink px-7 py-3 text-base font-semibold text-white transition-colors hover:bg-white hover:text-ink active:scale-95 md:self-auto"
           >
             Cotizar

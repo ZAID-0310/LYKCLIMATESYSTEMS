@@ -35,8 +35,7 @@ const videos = [
   },
 ];
 
-const WHATSAPP =
-  "https://wa.me/51902589157?text=Hola,%20quisiera%20una%20cotizaci%C3%B3n";
+
 
 const pad = (n) => String(n).padStart(2, "0");
 

@@ -6,7 +6,7 @@ export default function WhatsAppButton() {
   const [showMessage, setShowMessage] = useState(false);
   const [dismissed, setDismissed] = useState(false);
 
-  const phoneNumber = '51937111149';
+    const phoneNumber = '51902589157';
 
   const defaultMessage = encodeURIComponent(
     '¡Hola LYK Climate Systems S.A.C.! Quisiera información sobre sus sistemas de climatización para furgones.'
