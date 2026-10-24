@@ -8,6 +8,8 @@ import {
   equipo,
 } from "@/data/nosotros";
 
+import VideoModal from "./components/VideoModal";
+
 export default function NosotrosPage() {
   return (
     <main>
@@ -33,11 +35,10 @@ export default function NosotrosPage() {
               ))}
             </div>
           </div>
-          <img
-            src="/images/Furgonetapollitos.png"
-            alt="Furgoneta climatizada para el traslado de pollitos bebé"
-            className="w-full rounded-2xl object-cover shadow-lg"
-            loading="lazy"
+          <VideoModal
+            src="/images/nosotros.mp4"
+            poster="/images/image-poster.png"
+            title="LYK Climate Systems S.A.C."
           />
         </div>
       </section>
