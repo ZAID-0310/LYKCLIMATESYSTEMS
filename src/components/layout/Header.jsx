@@ -331,6 +331,28 @@ className="group relative hidden items-center overflow-hidden rounded-md bg-bran
                 )}
               </li>
 
+                            {/* Redes sociales (celular) */}
+              <li className="flex items-center gap-5 border-b border-navy/10 py-4">
+                <a
+                  href="https://www.facebook.com/profile.php?id=61591485725790&locale=es_LA"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Facebook de LYK Climate Systems"
+                  className="transition-colors hover:text-blue-500"
+                >
+                   <FaFacebook size={26} />
+                </a>
+                <a
+                        href="https://www.instagram.com/lykclimatesystemssac/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram de LYK Climate Systems"
+                  className="transition-colors hover:text-pink-500"
+                >
+                    <FaInstagram size={26} />
+                </a>
+              </li>
+
               <li className="py-4">
                 <a
                   href="/contacto"
